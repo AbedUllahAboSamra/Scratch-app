@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
+import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MaterialApp(home: MainScreenController()));
 }
 
 class MyApp extends StatelessWidget {
