@@ -1,13 +1,14 @@
+
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scratchfood/Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
+import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 
-class LoginScreen extends StatelessWidget {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
-
+class CreateAccountScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -53,7 +54,7 @@ class LoginScreen extends StatelessWidget {
                         height: 94,
                       ),
                       Text(
-                        'Welcome Back!',
+                        'Start\nfrom Scratch',
                         style: Theme.of(context).textTheme.headline2,
                       )
                     ],
@@ -64,12 +65,25 @@ class LoginScreen extends StatelessWidget {
             Container(
                 margin: EdgeInsets.symmetric(horizontal: 16, vertical: 22),
                 child: Text(
-                  'Please login to continue.',
+                  'Create account to continue.',
                   style: Theme.of(context).textTheme.headline6?.copyWith(
-                      color: Colors.grey[500],
-                      fontWeight: FontWeight.w400
+                    color: Colors.grey[500],
+                    fontWeight: FontWeight.w400
                   ),
                 )),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Full Name',
+
+                ),
+                cursorColor: MediaQuery.of(context).platformBrightness ==
+                    Brightness.light
+                    ? Colors.black
+                    : Colors.grey[100],
+              ),
+            ),
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               child: TextFormField(
@@ -88,7 +102,6 @@ class LoginScreen extends StatelessWidget {
               ),
               child: TextFormField(
                 keyboardType: TextInputType.visiblePassword,
-                controller: passwordController,
                 decoration: InputDecoration(
                   labelText: 'Password',
                 ),
@@ -111,7 +124,7 @@ class LoginScreen extends StatelessWidget {
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 5),
                   child: Text(
-                    'Login',
+                    'Create Account',
                     textAlign: TextAlign.start,
                     style: Theme.of(context).textTheme.bodyText2?.copyWith(
                         fontSize: 15,
@@ -127,24 +140,25 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'New to Scratch?',
+                    'Already have an account?',
                     style: Theme.of(context).textTheme.headline6?.copyWith(
-                        color: Colors.grey[500],
-                        fontWeight: FontWeight.w400
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.w400
 
                     ),
                   ),
                   SizedBox(height: 4,),
                   InkWell(
 
-                      onTap: () {                        Navigator.push(context, MaterialPageRoute(builder:(ctx)=> CreateAccountScreen()));
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder:(ctx)=> LoginScreen()));
                       },
                       child: Text(
-                        'Create Account Here',
+                        'Login Here',
                         style: Theme.of(context).textTheme.headline6?.copyWith(
                             color: Color(0xFF30BE76).withOpacity(.8),
                             fontSize: 16,
-                            fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600,
                         ),
                       )),
                 ],
@@ -155,4 +169,5 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
 }
