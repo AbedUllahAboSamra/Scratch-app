@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+
         designSize: const Size(360, 690),
         minTextAdapt: true,
         splitScreenMode: true,
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
                   fontSize: 17,
                   color: Colors.black,
                 ),
-                headline6:  GoogleFonts.nunito(
+                headline6: GoogleFonts.nunito(
                     fontSize: 14,
                     color: Colors.black,
                     fontWeight: FontWeight.w300
@@ -58,7 +60,7 @@ class MyApp extends StatelessWidget {
                     color: Colors.grey[500]!,
                   ),
                 ),
-                focusedBorder:UnderlineInputBorder(
+                focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey[500]!,
                   ),
@@ -73,5 +75,5 @@ class MyApp extends StatelessWidget {
             home: CreateAccountScreen(),
           );
         });
-   
+  }
   }
