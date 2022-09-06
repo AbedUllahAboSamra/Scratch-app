@@ -55,7 +55,7 @@ Widget ShardMaterialButton({
     margin: EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 22),
     child: MaterialButton(
       minWidth: double.infinity,
-      onPressed:()=> onPresed(),
+      onPressed:()=> onPresed,
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 5),
