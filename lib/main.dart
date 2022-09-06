@@ -7,7 +7,7 @@ import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 
 void main() {
-  runApp(MaterialApp(home: MainScreenController()));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {

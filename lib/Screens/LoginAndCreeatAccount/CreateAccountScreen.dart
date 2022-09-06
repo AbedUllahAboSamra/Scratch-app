@@ -1,14 +1,18 @@
-
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 
-class CreateAccountScreen extends StatelessWidget{
+import '../../ShardDesgin/ShardWidget.dart';
+
+class CreateAccountScreen extends StatelessWidget {
+  var nameController = TextEditingController();
+  var emailController = TextEditingController();
+  var passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -27,7 +31,7 @@ class CreateAccountScreen extends StatelessWidget{
                       alignment: FractionalOffset.topCenter,
                     ),
                     borderRadius:
-                    BorderRadius.only(bottomRight: Radius.circular(100)),
+                        BorderRadius.only(bottomRight: Radius.circular(100)),
                   ),
                 ),
                 Container(
@@ -67,73 +71,32 @@ class CreateAccountScreen extends StatelessWidget{
                 child: Text(
                   'Create account to continue.',
                   style: Theme.of(context).textTheme.headline6?.copyWith(
-                    color: Colors.grey[500],
-                    fontWeight: FontWeight.w400
-                  ),
+                      color: Colors.grey[500], fontWeight: FontWeight.w400),
                 )),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
+            ShardTextFromFiled(
+                context: context,
+                lableText: 'Full Name',
+                hintText: null,
+                controller: nameController,
+                textInputType: TextInputType.name),
+            ShardTextFromFiled(
+                context: context,
+                lableText: 'Email address',
+                hintText: null,
+                onChange: (s) {
+                  print(s);
+                },
+                controller: emailController,
+                textInputType: TextInputType.emailAddress),
+            ShardTextFromFiled(
+                context: context,
+                lableText: 'Password',
+                hintText: null,
+                controller: passwordController,
+                textInputType: TextInputType.emailAddress),
 
-                ),
-                cursorColor: MediaQuery.of(context).platformBrightness ==
-                    Brightness.light
-                    ? Colors.black
-                    : Colors.grey[100],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: TextFormField(
-                decoration: InputDecoration(
-                  labelText: 'Email address',
-                ),
-                cursorColor: MediaQuery.of(context).platformBrightness ==
-                    Brightness.light
-                    ? Colors.black
-                    : Colors.grey[100],
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(
-                horizontal: 16,
-              ),
-              child: TextFormField(
-                keyboardType: TextInputType.visiblePassword,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                ),
-                cursorColor: MediaQuery.of(context).platformBrightness ==
-                    Brightness.light
-                    ? Colors.black
-                    : Colors.grey[100],
-              ),
-            ),
-            Container(
-              height: 50.h,
-              decoration: BoxDecoration(
-                  color: Color(0xFF30BE76),
-                  borderRadius: BorderRadius.circular(8)),
-              margin: EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 22),
-              child: MaterialButton(
-                minWidth: double.infinity,
-                onPressed: () {},
-                child: Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: 5),
-                  child: Text(
-                    'Create Account',
-                    textAlign: TextAlign.start,
-                    style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                        fontSize: 15,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500),
-                  ),
-                ),
-              ),
-            ),
+            ShardMaterialButton(
+                context: context, lableText: 'Create Account', onPresed: () {}),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 8),
@@ -142,24 +105,23 @@ class CreateAccountScreen extends StatelessWidget{
                   Text(
                     'Already have an account?',
                     style: Theme.of(context).textTheme.headline6?.copyWith(
-                      color: Colors.grey[500],
-                      fontWeight: FontWeight.w400
-
-                    ),
+                        color: Colors.grey[500], fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(height: 4,),
+                  SizedBox(
+                    height: 4,
+                  ),
                   InkWell(
-
                       onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder:(ctx)=> LoginScreen()));
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (ctx) => LoginScreen()));
                       },
                       child: Text(
                         'Login Here',
                         style: Theme.of(context).textTheme.headline6?.copyWith(
-                            color: Color(0xFF30BE76).withOpacity(.8),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                        ),
+                              color: Color(0xFF30BE76).withOpacity(.8),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
                       )),
                 ],
               ),
@@ -169,5 +131,4 @@ class CreateAccountScreen extends StatelessWidget{
       ),
     );
   }
-
 }
