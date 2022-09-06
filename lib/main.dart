@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
+import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 
 void main() {
-  runApp(  MyApp());
+  runApp(MaterialApp(home: MainScreenController()));
 }
 
 class MyApp extends StatelessWidget {
@@ -73,5 +73,5 @@ class MyApp extends StatelessWidget {
             home: CreateAccountScreen(),
           );
         });
+   
   }
-}
