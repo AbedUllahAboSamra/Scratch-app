@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
+import '../MainScreen/MainScreenController.dart';
 
 class LoginScreen extends StatelessWidget {
   var emailController = TextEditingController();
@@ -83,7 +84,14 @@ class LoginScreen extends StatelessWidget {
                 controller: passwordController,
                 textInputType: TextInputType.visiblePassword),
             ShardMaterialButton(
-                context: context, lableText: 'Login', onPresed: () {}),
+                context: context,
+                lableText: 'Login',
+                onPresed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MainScreenController()));
+                }),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 8),
