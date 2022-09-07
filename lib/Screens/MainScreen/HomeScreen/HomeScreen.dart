@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeCardDetails.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -53,8 +54,11 @@ class Home extends StatelessWidget {
         Expanded(
           child: ListView(
             scrollDirection: Axis.horizontal,
+
             children: [
-              
+              HomeCardDetails(),
+              HomeCardDetails(),
+              HomeCardDetails(),
             ],
           ),
         ),
