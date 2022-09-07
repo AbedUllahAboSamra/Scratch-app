@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
+import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
 
@@ -94,9 +95,13 @@ class CreateAccountScreen extends StatelessWidget {
                 hintText: null,
                 controller: passwordController,
                 textInputType: TextInputType.emailAddress),
-
             ShardMaterialButton(
-                context: context, lableText: 'Create Account', onPresed: () {}),
+                context: context,
+                lableText: 'Create Account',
+                onPresed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (ctx) => MainScreenController()));
+                }),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 8),
