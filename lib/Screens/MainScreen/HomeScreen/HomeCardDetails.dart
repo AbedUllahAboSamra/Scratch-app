@@ -30,17 +30,17 @@ class HomeCardDetails extends StatelessWidget {
                     Image.asset("assets/Image/avatar.png"),
                     Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 5.r, horizontal: 10.r),
+                          EdgeInsets.symmetric(vertical: 4.r, horizontal: 10.r),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             "Profile Name",
                             style: TextStyle(fontSize: 12),
                           ),
                           Text(
                             "2h ago",
-                            style: TextStyle(color: Colors.grey, fontSize: 12),
+                            style: TextStyle(color: Colors.grey, fontSize: 11),
                           ),
                         ],
                       ),
@@ -115,7 +115,7 @@ class HomeCardDetails extends StatelessWidget {
                                     width: 2, color: Colors.green.shade400),
                               ),
                               fixedSize:
-                                  MaterialStateProperty.all(Size(73.w, 26.h))),
+                                  MaterialStateProperty.all(Size(73.w, 20.h))),
                           child: const Text("+ Save"),
                         )
                       ],
