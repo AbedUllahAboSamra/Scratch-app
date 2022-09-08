@@ -127,7 +127,9 @@ class HomeCardDetails extends StatelessWidget {
                           child: const Text("+ Save"),
                         )
                       ],
-                    )
+                    ),
+
+
                   ],
                 ),
               )

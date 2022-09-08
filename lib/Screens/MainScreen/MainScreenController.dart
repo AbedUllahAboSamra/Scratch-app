@@ -17,42 +17,40 @@ class _MainScreenControllerState extends State<MainScreenController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: bodyWidget[index],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: index,
-          onTap: (value) {
-            index = value;
-            setState(() {});
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: Image.asset("assets/Icon/search.png"),
-              label: "",
-              activeIcon: Image.asset(
-                "assets/Icon/search.png",
-                color: Colors.green,
-              ),
+    return Scaffold(
+      body: SafeArea(child: bodyWidget[index]),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: index,
+        onTap: (value) {
+          index = value;
+          setState(() {});
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Image.asset("assets/Icon/search.png"),
+            label: "",
+            activeIcon: Image.asset(
+              "assets/Icon/search.png",
+              color: Colors.green,
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset("assets/Icon/home.png"),
-              label: "",
-              activeIcon: Image.asset(
-                "assets/Icon/home.png",
-                color: Colors.green,
-              ),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset("assets/Icon/home.png"),
+            label: "",
+            activeIcon: Image.asset(
+              "assets/Icon/home.png",
+              color: Colors.green,
             ),
-            BottomNavigationBarItem(
-              icon: Image.asset("assets/Icon/profile.png"),
-              label: "",
-              activeIcon: Image.asset(
-                "assets/Icon/profile.png",
-                color: Colors.green,
-              ),
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset("assets/Icon/profile.png"),
+            label: "",
+            activeIcon: Image.asset(
+              "assets/Icon/profile.png",
+              color: Colors.green,
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
