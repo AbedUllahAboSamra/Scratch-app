@@ -8,134 +8,151 @@ class HomeCardDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 20.h, left: 10.w, right: 10.w),
-      child: Container(
-        width: 295.w,
-        height: 556.h,
-        decoration: BoxDecoration(
-          boxShadow: [
-            BoxShadow(
-                color: const Color(0x190D3320),
-                offset: const Offset(0,6),
-                blurRadius: 20.r)
-          ],
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
-                width: double.infinity,
-                height: 65.h,
-                child: Row(
-                  children: [
-                    Image.asset("assets/Image/avatar.png"),
-                    Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Profile Name",
-                            style: TextStyle(fontSize: 12.sp),
-                          ),
-                          Text(
-                            "2h ago",
-                            style:
-                                TextStyle(color: Colors.grey, fontSize: 11.sp),
-                          ),
-                        ],
+      width: 300.w,
+      height: 550.h,
+      decoration: BoxDecoration(
+        color: MediaQuery.of(context).platformBrightness==Brightness.light?
+        Colors.white:Color(0x51777777),
+
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
+            width: double.infinity,
+            height: 70.h,
+            child: Row(
+              children: [
+                Image.asset("assets/Image/avatar.png"),
+                Container(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Profile Name",
+                        style:  Theme.of(context).textTheme.headline6?.copyWith(
+                            fontSize: 12.sp,
+                          fontWeight: FontWeight.w600
+                        ),
                       ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 295.w,
-                height: 302.h,
-                child: Image.asset(
-                  "assets/Image/Feed_Card.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.all(13.r),
-                width: 265.w,
-                height: 130.h,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          "Red Wine and Mint Soufflé",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(
-                              Icons.favorite_outline,
-                              color: Colors.grey,
-                            ))
-                      ],
-                    ),
-                    Text(
-                      "Apparently we had reached a great height in the atmosphere, for the sky was …",
-                      style: TextStyle(color: Colors.grey, fontSize: 12.sp),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 2,
-                      softWrap: false,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: 130.w,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("32 likes",
-                                  style: TextStyle(fontSize: 12.sp)),
-                              Text(
-                                ".",
-                                style: TextStyle(
-                                    fontSize: 20.sp, color: Colors.grey),
-                              ),
-                              Text(
-                                "8 Comments",
-                                style: TextStyle(fontSize: 12.sp),
-                              ),
-                            ],
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          style: ButtonStyle(
-                              foregroundColor: MaterialStateProperty.all(
-                                  Colors.green.shade400),
-                              backgroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              side: MaterialStateProperty.all(
-                                BorderSide(
-                                    width: 2, color: Colors.green.shade400),
-                              ),
-                              fixedSize:
-                                  MaterialStateProperty.all(Size(73.w, 20.h))),
-                          child: const Text("+ Save"),
-                        )
-                      ],
-                    ),
+                      Text(
+                        "2h ago",
+                        style:
+                        Theme.of(context).textTheme.headline6?.copyWith(
+                            fontSize: 11.sp,
+                         ),
 
-
-                  ],
-                ),
-              )
-            ],
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
+          SizedBox(
+            width: double.infinity,
+            height: 302.h,
+            child: Image.asset(
+              "assets/Image/Feed_Card.png",
+              fit: BoxFit.fill,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 13.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                  Text(
+                  "Red Wine and Mint Soufflé",
+                  style:  Theme.of(context).textTheme.bodyText2?.copyWith(
+                       fontWeight: FontWeight.w600
+                  ),
+
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.favorite_outline,
+                     )),
+              ],
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 13.w),
+            child: Text(
+              "Apparently we had reached a great height in the atmosphere, for the sky was …",
+              style:  Theme.of(context).textTheme.headline6?.copyWith(
+fontSize: 12.sp,
+              color: MediaQuery.of(context).platformBrightness==Brightness.light?
+                  Colors.grey[600]:Colors.grey[200]
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
+              softWrap: false,
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 13.w),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 130.w,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text("32 likes",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                fontSize: 12.sp,
+                              )),
+                      Container(
+                        height: 3.w,
+                        width: 3.w,
+                        decoration: BoxDecoration(
+                          color: MediaQuery.of(context)
+                              .platformBrightness ==
+                              Brightness.light
+                              ? Colors.grey[800]
+                              : Colors.grey[200],
+                          borderRadius: BorderRadius.circular(50.r),
+                        ),
+                      ),
+                      Text("8 Comments",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              ?.copyWith(
+                                fontSize: 12.sp,
+                              )),
+                    ],
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all(Colors.green.shade400),
+                      backgroundColor:
+                          MaterialStateProperty.all(Colors.transparent),
+                      side: MaterialStateProperty.all(
+                        BorderSide(width: 2, color: Colors.green.shade400),
+                      ),
+                      fixedSize:
+                          MaterialStateProperty.all(Size(73.w, 20.h))),
+                  child: const Text("+ Save"),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

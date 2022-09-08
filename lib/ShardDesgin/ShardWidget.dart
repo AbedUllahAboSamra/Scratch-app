@@ -114,7 +114,7 @@ Widget ShardProfileRepceItem({
   return Card(
     color: MediaQuery.of(context).platformBrightness == Brightness.light
         ? Colors.white
-        : Color(0xFF030F09),
+        : Color(0x51777777),
     clipBehavior: Clip.hardEdge,
     elevation: 15,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
