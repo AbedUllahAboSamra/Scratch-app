@@ -22,25 +22,25 @@ class HomeCardDetails extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.all(13.r),
+                padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
                 width: double.infinity,
-                height: 62.h,
+                height: 65.h,
                 child: Row(
                   children: [
                     Image.asset("assets/Image/avatar.png"),
                     Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 4.r, horizontal: 10.r),
+                          EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
+                        children: [
                           Text(
                             "Profile Name",
-                            style: TextStyle(fontSize: 12),
+                            style: TextStyle(fontSize: 12.sp),
                           ),
                           Text(
                             "2h ago",
-                            style: TextStyle(color: Colors.grey, fontSize: 11),
+                            style: TextStyle(color: Colors.grey, fontSize: 11.sp),
                           ),
                         ],
                       ),
@@ -63,7 +63,7 @@ class HomeCardDetails extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Red Wine and Mint Soufflé",
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -77,7 +77,7 @@ class HomeCardDetails extends StatelessWidget {
                     ),
                     Text(
                       "Apparently we had reached a great height in the atmosphere, for the sky was …",
-                      style: TextStyle(color: Colors.grey, fontSize: 12.r),
+                      style: TextStyle(color: Colors.grey, fontSize: 12.sp),
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                       softWrap: false,
@@ -89,16 +89,16 @@ class HomeCardDetails extends StatelessWidget {
                           width: 130.w,
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: const [
-                              Text("32 likes", style: TextStyle(fontSize: 12)),
+                            children: [
+                              Text("32 likes", style: TextStyle(fontSize: 12.sp)),
                               Text(
                                 ".",
                                 style:
-                                    TextStyle(fontSize: 20, color: Colors.grey),
+                                    TextStyle(fontSize: 20.sp, color: Colors.grey),
                               ),
                               Text(
                                 "8 Comments",
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(fontSize: 12.sp),
                               ),
                             ],
                           ),
