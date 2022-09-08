@@ -11,18 +11,21 @@ class HomeCardDetails extends StatelessWidget {
       child: Container(
         width: 295.w,
         height: 556.h,
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-              color: Colors.grey.shade300,
-              offset: const Offset(0, 0),
-              blurRadius: 15)
-        ]),
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.shade300,
+                offset: const Offset(0, 0),
+                blurRadius: 15.r)
+          ],
+          borderRadius: BorderRadius.circular(8.r),
+        ),
         child: Container(
           color: Colors.white,
           child: Column(
             children: [
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 13.w,vertical: 13.h),
+                padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
                 width: double.infinity,
                 height: 65.h,
                 child: Row(
@@ -40,7 +43,8 @@ class HomeCardDetails extends StatelessWidget {
                           ),
                           Text(
                             "2h ago",
-                            style: TextStyle(color: Colors.grey, fontSize: 11.sp),
+                            style:
+                                TextStyle(color: Colors.grey, fontSize: 11.sp),
                           ),
                         ],
                       ),
@@ -51,7 +55,10 @@ class HomeCardDetails extends StatelessWidget {
               SizedBox(
                 width: 295.w,
                 height: 302.h,
-                child: Image.asset("assets/Image/Feed_Card.png",fit: BoxFit.fill,),
+                child: Image.asset(
+                  "assets/Image/Feed_Card.png",
+                  fit: BoxFit.fill,
+                ),
               ),
               Container(
                 margin: EdgeInsets.all(13.r),
@@ -90,11 +97,12 @@ class HomeCardDetails extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text("32 likes", style: TextStyle(fontSize: 12.sp)),
+                              Text("32 likes",
+                                  style: TextStyle(fontSize: 12.sp)),
                               Text(
                                 ".",
-                                style:
-                                    TextStyle(fontSize: 20.sp, color: Colors.grey),
+                                style: TextStyle(
+                                    fontSize: 20.sp, color: Colors.grey),
                               ),
                               Text(
                                 "8 Comments",
