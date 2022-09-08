@@ -14,9 +14,9 @@ class HomeCardDetails extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-                color: Colors.grey.shade300,
-                offset: const Offset(0, 0),
-                blurRadius: 15.r)
+                color: const Color(0x190D3320),
+                offset: const Offset(0,6),
+                blurRadius: 20.r)
           ],
           borderRadius: BorderRadius.circular(8.r),
         ),
