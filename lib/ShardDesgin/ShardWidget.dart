@@ -29,7 +29,6 @@ Widget ShardTextFromFiled({
       obscureText: obscureText,
       keyboardType: textInputType,
       maxLines: maxLine,
-
       cursorColor: MediaQuery.of(context).platformBrightness == Brightness.light
           ? Colors.black
           : Colors.grey[100],
@@ -39,13 +38,13 @@ Widget ShardTextFromFiled({
 
 Widget ShardMaterialButton({
   required BuildContext context,
-  required String  lableText,
+  required String lableText,
   horizontalMargin = 16,
   verticalMargin = 8,
- double margenBottom = 22.0,
- double margenTop = 32.0,
- double margenRight = 16.0,
- double margenLeft = 16.0,
+  double margenBottom = 22.0,
+  double margenTop = 32.0,
+  double margenRight = 16.0,
+  double margenLeft = 16.0,
   required Function onPresed,
 }) {
   return Container(
@@ -93,7 +92,6 @@ Widget ShardTextToTabView({
   return Text(
     text,
     style: Theme.of(context).textTheme.bodyText2?.copyWith(
-          fontSize: 16.sp,
           color: MediaQuery.of(context).platformBrightness == Brightness.light
               ? isSelected
                   ? Color(0xFF030F09)
@@ -136,7 +134,6 @@ Widget ShardProfileRepceItem({
           child: Text(
             MealName,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                  fontSize: 16.sp,
                   fontWeight: FontWeight.w500,
                 ),
           ),
@@ -184,27 +181,285 @@ Widget ShardProfileUserDisgin({
         ),
         Spacer(),
         InkWell(
-          onTap: (){},
-
+          onTap: () {},
           child: Container(
-
-            padding: EdgeInsets.symmetric(horizontal: 6.w,vertical: 4.h),
+            padding: EdgeInsets.symmetric(horizontal: 6.w, vertical: 4.h),
             decoration: BoxDecoration(
-                color: MediaQuery.of(context).platformBrightness==Brightness.light?Color(0xFF30BE76) :
-                Color(
-                    0x9BB6B6B6),
-                borderRadius: BorderRadius.circular(4.r),
+              color:
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFF30BE76)
+                      : Color(0x9BB6B6B6),
+              borderRadius: BorderRadius.circular(4.r),
             ),
-            child: Text('Following',
+            child: Text(
+              'Following',
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                color: Colors.white,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              ),
+                    color: Colors.white,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+            ),
           ),
         )
       ],
     ),
+  );
+}
+
+Widget SharedSearchRecipesDesign({
+  required BuildContext context,
+  required String recipesName,
+  required String imageUrl,
+}) {
+  return Container(
+    width: 120.w,
+    child: Column(
+      children: [
+        Image(image: AssetImage(imageUrl)),
+        SizedBox(
+          height: 4.h,
+        ),
+        Text(
+          recipesName,
+          style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                fontWeight: FontWeight.w200,
+              ),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget SharedSearchProfileCardDesign({
+  required BuildContext context,
+  required String lastPostImageUrl,
+  required String chefImageUrl,
+  required String chefName,
+  required int numberOfFollowers,
+  required int numberOfRecipes,
+  required int index,
+}) {
+  return Container(
+    child: Card(
+      margin: EdgeInsets.only(left: index == 0 ? 20.w : 10.w, right: 10.w),
+      child: InkWell(
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        child: Container(
+          width: 182.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15.r),
+              bottomRight: Radius.circular(15.r),
+            ),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Expanded(
+                      child: Image(
+                    image: NetworkImage(
+                      lastPostImageUrl,
+                    ),
+                    fit: BoxFit.fill,
+                  )),
+                  Expanded(
+                    child: Container(),
+                  ),
+                ],
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                  Color(0x59A9A9A9),
+                  Color(0x3FA9A9A9),
+                  Color(0x3AFFFFFF)
+                ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
+              ),
+              Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Spacer(),
+                    Card(
+                      clipBehavior: Clip.hardEdge,
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(555.r),
+                      ),
+                      child: Container(
+                        height: 80.w,
+                        width: 80.w,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5555.r),
+                          color: Colors.white,
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.hardEdge,
+                          margin: EdgeInsets.all(8.r),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(555.r),
+                          ),
+                          child: Image(
+                            image: NetworkImage(chefImageUrl),
+                            fit: BoxFit.fill,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Text(chefName),
+                    SizedBox(
+                      height: 4.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(numberOfRecipes.toString(),
+                                style: Theme.of(context).textTheme.headline6),
+                            Text('recipes',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
+                                        fontSize: 10.sp,
+                                        color: Color(0xFF707070),
+                                        fontWeight: FontWeight.w400)),
+                          ],
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(numberOfFollowers.toString(),
+                                style: Theme.of(context).textTheme.headline6),
+                            Text('followers',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline6
+                                    ?.copyWith(
+                                        fontSize: 10.sp,
+                                        color: Color(0xFF707070),
+                                        fontWeight: FontWeight.w400)),
+                          ],
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+Widget SharedSearchRecipes2Design({
+  required BuildContext context,
+  required String recipesName,
+  required String imageUrl,
+  required int index,
+}) {
+  return Container(
+    width: 125.w,
+    height: 200.h,
+    margin: EdgeInsets.only(left: index == 0 ? 20.w : 10.w, right: 10.w),
+    child: Column(
+      children: [
+        Expanded(
+            child: Image(
+          image: NetworkImage(imageUrl),
+          fit: BoxFit.fitHeight,
+        )),
+        SizedBox(
+          height: 4.h,
+        ),
+        Text(
+          recipesName,
+          style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                fontWeight: FontWeight.w200,
+              ),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
+        ),
+        SizedBox(
+          height: 4.h,
+        ),
+      ],
+    ),
+  );
+}
+
+Widget SharedTagDesignItem({
+  required BuildContext context,
+  required String tagName,
+  required int followersNum,
+  required int likesNum,
+}) {
+  return Container(
+    margin: EdgeInsets.symmetric(
+      vertical: 8.h,
+    ),
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Text(
+        tagName,
+        style: Theme.of(context).textTheme.bodyText2?.copyWith(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+      ),
+      SizedBox(
+        height: 4.h,
+      ),
+      Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            '$followersNum followers',
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                fontSize: 14.sp,
+                color: MediaQuery.of(context).platformBrightness ==
+                        Brightness.light
+                    ? Color(0xFF606060)
+                    : Colors.grey[200]),
+          ),
+          SizedBox(
+            width: 8.w,
+          ),
+          Container(
+            height: 3.w,
+            width: 3.w,
+            decoration: BoxDecoration(
+              color:
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFF979797)
+                      : Colors.grey[200],
+              borderRadius: BorderRadius.circular(50.r),
+            ),
+          ),
+          SizedBox(
+            width: 8.w,
+          ),
+          Text(
+            '$likesNum likes',
+            style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                fontSize: 14.sp,
+                color: MediaQuery.of(context).platformBrightness ==
+                        Brightness.light
+                    ? Color(0xFF606060)
+                    : Colors.grey[200]),
+          ),
+        ],
+      ),
+    ]),
   );
 }

@@ -131,8 +131,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           .textTheme
                           .bodyText2
                           ?.copyWith(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w300),
+                           fontWeight: FontWeight.w300),
                     ),
                     SizedBox(
                       height: 2.h,

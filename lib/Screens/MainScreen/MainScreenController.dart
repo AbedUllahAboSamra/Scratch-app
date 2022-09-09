@@ -18,6 +18,7 @@ class _MainScreenControllerState extends State<MainScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(child: bodyWidget[index]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,

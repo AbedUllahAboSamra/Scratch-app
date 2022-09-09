@@ -129,7 +129,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>  with TickerProvi
                             .textTheme
                             .bodyText2
                             ?.copyWith(
-                            fontSize: 16.sp,
+
                             fontWeight: FontWeight.w300),
                       ),
                       SizedBox(
