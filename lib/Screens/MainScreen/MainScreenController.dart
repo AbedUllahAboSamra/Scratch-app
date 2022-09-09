@@ -18,6 +18,7 @@ class _MainScreenControllerState extends State<MainScreenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(child: bodyWidget[index]),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
@@ -27,30 +28,39 @@ class _MainScreenControllerState extends State<MainScreenController> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Image.asset("assets/Icon/search.png"),
+
+            icon: Image.asset("assets/Icon/search.png",color: MediaQuery.of(context).platformBrightness==Brightness.light?
+            Color(0xFF363837):Colors.grey[200]
+              ,),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/search.png",
-              color: Colors.green,
+              color: Color(0xFF30BE76),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/Icon/home.png"),
+            icon: Image.asset("assets/Icon/home.png", color: MediaQuery.of(context).platformBrightness==Brightness.light?
+    Color(0xFF363837):Colors.grey[200]
+    ,),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/home.png",
-              color: Colors.green,
+              color: Color(0xFF30BE76),
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/Icon/profile.png"),
+            icon: Image.asset("assets/Icon/profile.png",color: MediaQuery.of(context).platformBrightness==Brightness.light?
+            Color(0xFF363837):Colors.grey[200]
+              ,),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/profile.png",
-              color: Colors.green,
+              color: Color(0xFF30BE76),
+
             ),
           ),
         ],
+
       ),
     );
   }

@@ -30,21 +30,24 @@ class Home extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(
+                    IconButton(                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
                       onPressed: () {},
                       icon: Icon(
                         Icons.notifications_none,
                         size: 20.h,
-                        color: Colors.grey,
-                      ),
+                       ),
                     ),
                     IconButton(
+                      splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
                         onPressed: () {},
                         icon: Icon(
                           Icons.mail_outline,
                           size: 20.h,
-                          color: Colors.grey,
-                        ))
+                         ))
                   ],
                 ),
               ],
@@ -53,6 +56,7 @@ class Home extends StatelessWidget {
         ),
         Expanded(
           child: ListView(
+            physics: BouncingScrollPhysics(),
             scrollDirection: Axis.horizontal,
 
             children: [

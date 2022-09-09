@@ -1,8 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/RecipesPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/SavedPage.dart';
-import 'package:scratchfood/Screens/MainScreen/ProfileScreen/Settings.dart';
 
 import '../../../ShardDesgin/ShardWidget.dart';
 import 'FollowingPage.dart';
@@ -20,6 +22,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
   var selectedItem = -1;
   var arrayPages = [
     RecipesPage(),
+    SavedPage(),
+    FollowingPage()
   ];
 
   @override
@@ -46,21 +50,27 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     super.dispose();
   }
 
+
   var arr = [RecipesPage(), SavedPage(), FollowingPage()];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
+      child:  SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(children: [
           Container(
-            margin: EdgeInsets.only(left: 25.w, right: 25.w, top: 32.h),
+            margin: EdgeInsets.only(
+              left: 25.w,
+              right: 25.w,
+              top: 25.h
+            ),
             child: Row(
               children: [
                 Text(
                   'My Kitchen',
-                  style: Theme.of(context).textTheme.headline2?.copyWith(),
+                  style:
+                  Theme.of(context).textTheme.headline2?.copyWith(),
                 ),
                 Spacer(),
                 InkWell(
@@ -68,9 +78,6 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => Settings(),
-                    ));
                     setState(() {});
                   },
                   child: Row(
@@ -86,9 +93,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       ),
                       Text(
                         'Settings',
-                        style: Theme.of(context).textTheme.headline6?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            ?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ],
                   ),
@@ -117,18 +127,25 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                   children: [
                     Text(
                       'User Name',
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                          fontSize: 16.sp, fontWeight: FontWeight.w300),
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(
+                           fontWeight: FontWeight.w300),
                     ),
                     SizedBox(
                       height: 2.h,
                     ),
                     Text(
                       'Potato Master',
-                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyText2
+                          ?.copyWith(
                           fontSize: 14,
-                          color: MediaQuery.of(context).platformBrightness ==
-                                  Brightness.light
+                          color: MediaQuery.of(context)
+                              .platformBrightness ==
+                              Brightness.light
                               ? Color(0xFF606060)
                               : Colors.grey[200]),
                     ),
@@ -142,22 +159,23 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                               .textTheme
                               .bodyText2
                               ?.copyWith(
-                                  fontSize: 14.sp,
-                                  color: MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light
-                                      ? Color(0xFF606060)
-                                      : Colors.grey[200]),
+                              fontSize: 14.sp,
+                              color: MediaQuery.of(context)
+                                  .platformBrightness ==
+                                  Brightness.light
+                                  ? Color(0xFF606060)
+                                  : Colors.grey[200]),
                         ),
                         SizedBox(
                           width: 8.w,
                         ),
                         Container(
-                          height: 4.w,
-                          width: 4.w,
+                          height: 3.w,
+                          width: 3.w,
                           decoration: BoxDecoration(
-                            color: MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light
+                            color: MediaQuery.of(context)
+                                .platformBrightness ==
+                                Brightness.light
                                 ? Color(0xFF979797)
                                 : Colors.grey[200],
                             borderRadius: BorderRadius.circular(50.r),
@@ -172,12 +190,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                               .textTheme
                               .bodyText2
                               ?.copyWith(
-                                  fontSize: 14.sp,
-                                  color: MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light
-                                      ? Color(0xFF606060)
-                                      : Colors.grey[200]),
+                              fontSize: 14.sp,
+                              color: MediaQuery.of(context)
+                                  .platformBrightness ==
+                                  Brightness.light
+                                  ? Color(0xFF606060)
+                                  : Colors.grey[200]),
                         ),
                       ],
                     )
@@ -213,9 +231,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             height: 1.5.h,
             decoration: BoxDecoration(
                 color: MediaQuery.of(context).platformBrightness ==
-                        Brightness.light
+                    Brightness.light
                     ? Colors.grey[300]
-                    : Colors.grey[200],
+                    : Colors.grey[600],
                 borderRadius: BorderRadius.circular(50.r)),
           ),
           SizedBox(
@@ -229,163 +247,184 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             height: 64.h,
             width: double.infinity,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  child: Column(
-                    children: [
-                      ShardTextToTabView(
-                          context: context,
-                          text: '20',
-                          isSelected: selectedItem == 0),
-                      Spacer(),
-                      ShardTextToTabView(
-                          context: context,
-                          text: 'Recipes',
-                          isSelected: selectedItem == 0),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      Spacer(),
-                      selectedItem == 0
-                          ? SizeTransition(
-                              sizeFactor: _animationLeftToRight,
-                              axis: Axis.horizontal,
-                              axisAlignment: 0,
-                              child: Container(
-                                width: 82.w,
-                                height: 3.5.h,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF30BE76),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                    bottomLeft: Radius.zero,
-                                    bottomRight: Radius.zero,
-                                  ),
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    alignment: Alignment.centerLeft,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ShardTextToTabView(
+                              context: context,
+                              text: '20',
+                              isSelected: selectedItem == 0),
+                          Spacer(),
+                          ShardTextToTabView(
+                              context: context,
+                              text: 'Recipes',
+                              isSelected: selectedItem == 0),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          Spacer(),
+                          selectedItem == 0
+                              ? SizeTransition(
+                            sizeFactor: _animationLeftToRight,
+                            axis: Axis.horizontal,
+                            axisAlignment: 0,
+                            child: Container(
+                              width: 82.w,
+                              height: 3.5.h,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF30BE76),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                  bottomLeft: Radius.zero,
+                                  bottomRight: Radius.zero,
                                 ),
                               ),
-                            )
-                          : Container(
-                              height: 3.5.h,
                             ),
-                    ],
+                          )
+                              : Container(
+                            height: 3.5.h,
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedItem = 0;
+                          _controllerLeftToRight.forward(
+                            from: 0,
+                          );
+                        });
+                      },
+                    ),
                   ),
-                  onTap: () {
-                    setState(() {
-                      selectedItem = 0;
-                      _controllerLeftToRight.forward(
-                        from: 0,
-                      );
-                    });
-                  },
                 ),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  child: Column(
-                    children: [
-                      ShardTextToTabView(
-                          context: context,
-                          text: '75',
-                          isSelected: selectedItem == 1),
-                      Spacer(),
-                      ShardTextToTabView(
-                          context: context,
-                          text: 'Saved',
-                          isSelected: selectedItem == 1),
-                      Spacer(),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      selectedItem == 1
-                          ? SizeTransition(
-                              sizeFactor: _animationLeftToRight,
-                              axis: Axis.horizontal,
-                              axisAlignment: 0,
-                              child: Container(
-                                width: 82.w,
-                                height: 3.5.h,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF30BE76),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                    bottomLeft: Radius.zero,
-                                    bottomRight: Radius.zero,
-                                  ),
+                SizedBox(width: 5.w,),
+                Expanded(
+                  flex: 2,
+                  child: Container(                    width: double.infinity,
+
+                    alignment: Alignment.center,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ShardTextToTabView(
+                              context: context,
+                              text: '75',
+                              isSelected: selectedItem == 1),
+                          Spacer(),
+                          ShardTextToTabView(
+                              context: context,
+                              text: 'Saved',
+                              isSelected: selectedItem == 1),
+                          Spacer(),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          selectedItem == 1
+                              ? SizeTransition(
+                            sizeFactor: _animationLeftToRight,
+                            axis: Axis.horizontal,
+                            axisAlignment: 0,
+                            child: Container(
+                              width: double.infinity,
+                              height: 3.5.h,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF30BE76),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                  bottomLeft: Radius.zero,
+                                  bottomRight: Radius.zero,
                                 ),
                               ),
-                            )
-                          : Container(
-                              height: 3.5.h,
                             ),
-                    ],
+                          )
+                              : Container(
+                            height: 3.5.h,
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedItem = 1;
+                          _controllerLeftToRight.forward(
+                            from: 0,
+                          );
+                        });
+                      },
+                    ),
                   ),
-                  onTap: () {
-                    setState(() {
-                      selectedItem = 1;
-                      _controllerLeftToRight.forward(
-                        from: 0,
-                      );
-                    });
-                  },
                 ),
-                InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  child: Column(
-                    children: [
-                      ShardTextToTabView(
-                          context: context,
-                          text: '248',
-                          isSelected: selectedItem == 2),
-                      Spacer(),
-                      ShardTextToTabView(
-                          context: context,
-                          text: 'Following',
-                          isSelected: selectedItem == 2),
-                      Spacer(),
-                      SizedBox(
-                        height: 4.h,
-                      ),
-                      selectedItem == 2
-                          ? SizeTransition(
-                              sizeFactor: _animationLeftToRight,
-                              axis: Axis.horizontal,
-                              axisAlignment: 0,
-                              child: Container(
-                                width: 82.w,
-                                height: 3.5.h,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF30BE76),
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(5),
-                                    topRight: Radius.circular(5),
-                                    bottomLeft: Radius.zero,
-                                    bottomRight: Radius.zero,
-                                  ),
+                SizedBox(width: 5.w,),
+                Expanded(
+                  child: Container(                    width: double.infinity,
+
+                    alignment: Alignment.centerRight,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ShardTextToTabView(
+                              context: context,
+                              text: '248',
+                              isSelected: selectedItem == 2),
+                          Spacer(),
+                          ShardTextToTabView(
+                              context: context,
+                              text: 'Following',
+                              isSelected: selectedItem == 2),
+                          Spacer(),
+                          SizedBox(
+                            height: 4.h,
+                          ),
+                          selectedItem == 2
+                              ? SizeTransition(
+                            sizeFactor: _animationLeftToRight,
+                            axis: Axis.horizontal,
+                            axisAlignment: 0,
+                            child: Container(
+                              width: 82.w,
+                              height: 3.5.h,
+                              decoration: BoxDecoration(
+                                color: Color(0xFF30BE76),
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                  bottomLeft: Radius.zero,
+                                  bottomRight: Radius.zero,
                                 ),
                               ),
-                            )
-                          : Container(
-                              height: 3.5.h,
                             ),
-                    ],
+                          )
+                              : Container(
+                            height: 3.5.h,
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        setState(() {
+                          selectedItem = 2;
+                          _controllerLeftToRight.forward(
+                            from: 0,
+                          );
+                        });
+                      },
+                    ),
                   ),
-                  onTap: () {
-                    setState(() {
-                      selectedItem = 2;
-                      _controllerLeftToRight.forward(
-                        from: 0,
-                      );
-                    });
-                  },
                 ),
               ],
             ),
@@ -398,14 +437,15 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             height: 1.5.h,
             decoration: BoxDecoration(
                 color: MediaQuery.of(context).platformBrightness ==
-                        Brightness.light
+                    Brightness.light
                     ? Colors.grey[300]
-                    : Colors.grey[200],
+                    : Colors.grey[600],
                 borderRadius: BorderRadius.circular(50.r)),
           ),
           SizedBox(
             height: 20.h,
           ),
+
           arr[selectedItem],
           SizedBox(
             height: 5,

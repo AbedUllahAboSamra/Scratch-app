@@ -15,7 +15,7 @@ class RecipesPage extends StatelessWidget {
         mainAxisSpacing: 10.h,
       ),
       physics: NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.only(left: 25.w, right: 25.w, bottom: 10.h),
+      padding: EdgeInsets.only(left: 25.w, right: 25.w, bottom: 30.h),
       itemBuilder: (context, index) => ShardProfileRepceItem(
         context: context,
         ImageUrl: 'assets/Image.jpg',
