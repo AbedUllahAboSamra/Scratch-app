@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/RecipesPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/SavedPage.dart';
+import 'package:scratchfood/Screens/MainScreen/ProfileScreen/Settings.dart';
 
 import '../../../ShardDesgin/ShardWidget.dart';
 import 'FollowingPage.dart';
@@ -20,11 +21,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
   late final Animation<double> _animationLeftToRight;
 
   var selectedItem = -1;
-  var arrayPages = [
-    RecipesPage(),
-    SavedPage(),
-    FollowingPage()
-  ];
+  var arrayPages = [RecipesPage(), SavedPage(), FollowingPage()];
 
   @override
   void initState() {
@@ -50,27 +47,21 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     super.dispose();
   }
 
-
   var arr = [RecipesPage(), SavedPage(), FollowingPage()];
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child:  SingleChildScrollView(
+      child: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
         child: Column(children: [
           Container(
-            margin: EdgeInsets.only(
-              left: 25.w,
-              right: 25.w,
-              top: 25.h
-            ),
+            margin: EdgeInsets.only(left: 25.w, right: 25.w, top: 25.h),
             child: Row(
               children: [
                 Text(
                   'My Kitchen',
-                  style:
-                  Theme.of(context).textTheme.headline2?.copyWith(),
+                  style: Theme.of(context).textTheme.headline2?.copyWith(),
                 ),
                 Spacer(),
                 InkWell(
@@ -78,6 +69,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
                   onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => Settings(),
+                    ));
                     setState(() {});
                   },
                   child: Row(
@@ -93,12 +87,9 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       ),
                       Text(
                         'Settings',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            ?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: Theme.of(context).textTheme.headline6?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
                       ),
                     ],
                   ),
@@ -130,22 +121,17 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2
-                          ?.copyWith(
-                           fontWeight: FontWeight.w300),
+                          ?.copyWith(fontWeight: FontWeight.w300),
                     ),
                     SizedBox(
                       height: 2.h,
                     ),
                     Text(
                       'Potato Master',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyText2
-                          ?.copyWith(
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
                           fontSize: 14,
-                          color: MediaQuery.of(context)
-                              .platformBrightness ==
-                              Brightness.light
+                          color: MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light
                               ? Color(0xFF606060)
                               : Colors.grey[200]),
                     ),
@@ -159,12 +145,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                               .textTheme
                               .bodyText2
                               ?.copyWith(
-                              fontSize: 14.sp,
-                              color: MediaQuery.of(context)
-                                  .platformBrightness ==
-                                  Brightness.light
-                                  ? Color(0xFF606060)
-                                  : Colors.grey[200]),
+                                  fontSize: 14.sp,
+                                  color: MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light
+                                      ? Color(0xFF606060)
+                                      : Colors.grey[200]),
                         ),
                         SizedBox(
                           width: 8.w,
@@ -173,9 +159,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           height: 3.w,
                           width: 3.w,
                           decoration: BoxDecoration(
-                            color: MediaQuery.of(context)
-                                .platformBrightness ==
-                                Brightness.light
+                            color: MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light
                                 ? Color(0xFF979797)
                                 : Colors.grey[200],
                             borderRadius: BorderRadius.circular(50.r),
@@ -190,12 +175,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                               .textTheme
                               .bodyText2
                               ?.copyWith(
-                              fontSize: 14.sp,
-                              color: MediaQuery.of(context)
-                                  .platformBrightness ==
-                                  Brightness.light
-                                  ? Color(0xFF606060)
-                                  : Colors.grey[200]),
+                                  fontSize: 14.sp,
+                                  color: MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light
+                                      ? Color(0xFF606060)
+                                      : Colors.grey[200]),
                         ),
                       ],
                     )
@@ -231,7 +216,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             height: 1.5.h,
             decoration: BoxDecoration(
                 color: MediaQuery.of(context).platformBrightness ==
-                    Brightness.light
+                        Brightness.light
                     ? Colors.grey[300]
                     : Colors.grey[600],
                 borderRadius: BorderRadius.circular(50.r)),
@@ -274,26 +259,26 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           Spacer(),
                           selectedItem == 0
                               ? SizeTransition(
-                            sizeFactor: _animationLeftToRight,
-                            axis: Axis.horizontal,
-                            axisAlignment: 0,
-                            child: Container(
-                              width: 82.w,
-                              height: 3.5.h,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF30BE76),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.zero,
-                                  bottomRight: Radius.zero,
-                                ),
-                              ),
-                            ),
-                          )
+                                  sizeFactor: _animationLeftToRight,
+                                  axis: Axis.horizontal,
+                                  axisAlignment: 0,
+                                  child: Container(
+                                    width: 82.w,
+                                    height: 3.5.h,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF30BE76),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        topRight: Radius.circular(5),
+                                        bottomLeft: Radius.zero,
+                                        bottomRight: Radius.zero,
+                                      ),
+                                    ),
+                                  ),
+                                )
                               : Container(
-                            height: 3.5.h,
-                          ),
+                                  height: 3.5.h,
+                                ),
                         ],
                       ),
                       onTap: () {
@@ -307,11 +292,13 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                SizedBox(width: 5.w,),
+                SizedBox(
+                  width: 5.w,
+                ),
                 Expanded(
                   flex: 2,
-                  child: Container(                    width: double.infinity,
-
+                  child: Container(
+                    width: double.infinity,
                     alignment: Alignment.center,
                     child: InkWell(
                       splashColor: Colors.transparent,
@@ -334,26 +321,26 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           ),
                           selectedItem == 1
                               ? SizeTransition(
-                            sizeFactor: _animationLeftToRight,
-                            axis: Axis.horizontal,
-                            axisAlignment: 0,
-                            child: Container(
-                              width: double.infinity,
-                              height: 3.5.h,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF30BE76),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.zero,
-                                  bottomRight: Radius.zero,
-                                ),
-                              ),
-                            ),
-                          )
+                                  sizeFactor: _animationLeftToRight,
+                                  axis: Axis.horizontal,
+                                  axisAlignment: 0,
+                                  child: Container(
+                                    width: double.infinity,
+                                    height: 3.5.h,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF30BE76),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        topRight: Radius.circular(5),
+                                        bottomLeft: Radius.zero,
+                                        bottomRight: Radius.zero,
+                                      ),
+                                    ),
+                                  ),
+                                )
                               : Container(
-                            height: 3.5.h,
-                          ),
+                                  height: 3.5.h,
+                                ),
                         ],
                       ),
                       onTap: () {
@@ -367,10 +354,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                     ),
                   ),
                 ),
-                SizedBox(width: 5.w,),
+                SizedBox(
+                  width: 5.w,
+                ),
                 Expanded(
-                  child: Container(                    width: double.infinity,
-
+                  child: Container(
+                    width: double.infinity,
                     alignment: Alignment.centerRight,
                     child: InkWell(
                       splashColor: Colors.transparent,
@@ -393,26 +382,26 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           ),
                           selectedItem == 2
                               ? SizeTransition(
-                            sizeFactor: _animationLeftToRight,
-                            axis: Axis.horizontal,
-                            axisAlignment: 0,
-                            child: Container(
-                              width: 82.w,
-                              height: 3.5.h,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF30BE76),
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(5),
-                                  topRight: Radius.circular(5),
-                                  bottomLeft: Radius.zero,
-                                  bottomRight: Radius.zero,
-                                ),
-                              ),
-                            ),
-                          )
+                                  sizeFactor: _animationLeftToRight,
+                                  axis: Axis.horizontal,
+                                  axisAlignment: 0,
+                                  child: Container(
+                                    width: 82.w,
+                                    height: 3.5.h,
+                                    decoration: BoxDecoration(
+                                      color: Color(0xFF30BE76),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        topRight: Radius.circular(5),
+                                        bottomLeft: Radius.zero,
+                                        bottomRight: Radius.zero,
+                                      ),
+                                    ),
+                                  ),
+                                )
                               : Container(
-                            height: 3.5.h,
-                          ),
+                                  height: 3.5.h,
+                                ),
                         ],
                       ),
                       onTap: () {
@@ -437,7 +426,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
             height: 1.5.h,
             decoration: BoxDecoration(
                 color: MediaQuery.of(context).platformBrightness ==
-                    Brightness.light
+                        Brightness.light
                     ? Colors.grey[300]
                     : Colors.grey[600],
                 borderRadius: BorderRadius.circular(50.r)),
@@ -445,7 +434,6 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
           SizedBox(
             height: 20.h,
           ),
-
           arr[selectedItem],
           SizedBox(
             height: 5,
