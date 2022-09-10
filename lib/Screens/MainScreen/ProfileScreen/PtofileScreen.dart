@@ -72,7 +72,6 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => Settings(),
                     ));
-                    setState(() {});
                   },
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
