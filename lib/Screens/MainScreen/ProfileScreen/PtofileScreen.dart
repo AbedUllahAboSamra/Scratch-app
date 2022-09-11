@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/Screens/MainScreen/ProfileScreen/EditeProfile.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/RecipesPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/SavedPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/Settings.dart';
@@ -187,6 +188,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                 ),
                 Spacer(),
                 InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => EditeProfile(),
+                    ));
+                  },
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
                   focusColor: Colors.transparent,
