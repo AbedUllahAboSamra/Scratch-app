@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
+import '../../SplitCode/ProviderSwitchUpdate.dart';
 import '../MainScreen/MainScreenController.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -11,6 +13,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ProviderSwitchUpdate>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -87,11 +90,8 @@ class LoginScreen extends StatelessWidget {
                 context: context,
                 lableText: 'Login',
                 onPresed: () {
-                  Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => MainScreenController()));
-                }),
+
+                             }),
             Container(
               alignment: Alignment.center,
               margin: EdgeInsets.only(top: 8),

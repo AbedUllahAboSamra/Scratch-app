@@ -5,8 +5,8 @@ Widget ShardTextFromFiled({
   required BuildContext context,
   required String? lableText,
   required String? hintText,
-  horizontalMargin = 16.0,
-  verticalMargin = 8.0,
+  horizontalMargin = 16.0 ,
+  verticalMargin = 8.0 ,
   Function(String)? onChange,
   Function(String)? onSubmit,
   required TextEditingController controller,
@@ -17,7 +17,7 @@ Widget ShardTextFromFiled({
 }) {
   return Container(
     margin: EdgeInsets.symmetric(
-        horizontal: horizontalMargin, vertical: verticalMargin),
+        horizontal: horizontalMargin, vertical: verticalMargin ),
     child: TextFormField(
       controller: controller,
       onChanged: onChange,
@@ -45,24 +45,27 @@ Widget ShardMaterialButton({
   double margenTop = 32.0,
   double margenRight = 16.0,
   double margenLeft = 16.0,
+  double radis = 8.0,
   required Function onPresed,
 }) {
   return Container(
     height: 50.h,
     decoration: BoxDecoration(
-        color: Color(0xFF30BE76), borderRadius: BorderRadius.circular(8.r)),
-    margin: EdgeInsets.only(left: 16, right: 16, top: 32, bottom: 22),
-    child: MaterialButton(
+        color: Color(0xFF30BE76), borderRadius: BorderRadius.circular(radis.r)),
+    margin: EdgeInsets.only(left: margenLeft.w, right: margenRight.w, top: margenTop.h, bottom: margenBottom.h),
+    child: MaterialButton(  splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      focusColor: Colors.transparent,
       minWidth: double.infinity,
       onPressed: () => onPresed,
       child: Container(
         width: double.infinity,
-        margin: EdgeInsets.only(top: 5),
+        margin: EdgeInsets.only(top: 5.h),
         child: Text(
           lableText,
           textAlign: TextAlign.start,
           style: Theme.of(context).textTheme.bodyText2?.copyWith(
-              fontSize: 15, color: Colors.white, fontWeight: FontWeight.w500),
+              fontSize: 16.sp, color: Colors.white, fontWeight: FontWeight.w500),
         ),
       ),
     ),
@@ -154,7 +157,7 @@ Widget ShardProfileUserDisgin({
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SharedCircllerImage(width: 50, height: 50, ImageLink: ImageUrl),
+        SharedCircllerImage(width: 50.h, height: 50.h, ImageLink: ImageUrl),
         SizedBox(
           width: 14.w,
         ),
@@ -195,7 +198,7 @@ Widget ShardProfileUserDisgin({
               'Following',
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
                     color: Colors.white,
-                    fontSize: 14,
+                    fontSize: 14.sp,
                     fontWeight: FontWeight.w500,
                   ),
             ),
@@ -413,7 +416,7 @@ Widget SharedTagDesignItem({
       Text(
         tagName,
         style: Theme.of(context).textTheme.bodyText2?.copyWith(
-              fontSize: 16,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
             ),
       ),

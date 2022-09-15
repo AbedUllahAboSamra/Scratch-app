@@ -3,7 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:scratchfood/Screens/MainScreen/SplitCode/ProviderSwitchUpdate.dart';
+
+import '../../../SplitCode/ProviderSwitchUpdate.dart';
 
 class Settings extends StatelessWidget {
   @override
@@ -17,6 +18,10 @@ class Settings extends StatelessWidget {
         Provider.of<ProviderSwitchUpdate>(context).seeSavedRecipesSwitch;
     bool seeProfilesSwitch =
         Provider.of<ProviderSwitchUpdate>(context).seeProfilesSwitch;
+
+
+
+
 
     return Scaffold(
       body: Container(
