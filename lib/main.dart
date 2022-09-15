@@ -1,15 +1,17 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:scratchfood/Screens/MainScreen/SplitCode/ProviderSwitchUpdate.dart';
-import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
+  import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
+import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
-import 'Screens/UserProfileScreen.dart';
+import 'SplitCode/ProviderSwitchUpdate.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
   runApp(const MyApp());
 }
 
@@ -18,12 +20,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => ProviderSwitchUpdate(),
-        ),
-      ],
+
+    return ChangeNotifierProvider <ProviderSwitchUpdate>(
+      create: (context){
+        return ProviderSwitchUpdate();
+      },
       child: ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
@@ -124,14 +125,14 @@ class MyApp extends StatelessWidget {
                         color: Colors.grey[500]!,
                       ),
                     ),
-                    labelStyle: GoogleFonts.neuton(
-                        fontSize: 15, color: Colors.grey[500]),
+                    labelStyle:
+                        GoogleFonts.neuton(fontSize: 15, color: Colors.grey[500]),
                   ),
                   iconTheme: IconThemeData(
                     color: Color(0xFFE3E3E3),
                     size: 24,
                   )),
-              home: MainScreenController(),
+              home: LoginScreen(),
             );
           }),
     );

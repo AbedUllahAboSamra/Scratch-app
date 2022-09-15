@@ -1,12 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+
 class ProviderSwitchUpdate extends ChangeNotifier {
   bool NotifySwitch = false;
   bool messageSwitch = true;
   bool liveCookingSwitch = true;
   bool seeSavedRecipesSwitch = true;
   bool seeProfilesSwitch = true;
+
+//
+  bool isVisibleSearchScreen = false;
+
+//
+
   updateNotifySwitch(bool value) {
     NotifySwitch = value;
     notifyListeners();
@@ -31,4 +39,5 @@ class ProviderSwitchUpdate extends ChangeNotifier {
     seeProfilesSwitch = value;
     notifyListeners();
   }
+
 }
