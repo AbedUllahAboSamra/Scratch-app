@@ -3,10 +3,19 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
+import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
+import 'package:scratchfood/prefs/shared_pref_controller.dart';
+import '../../../API/auth_api_controller.dart';
 import '../../../SplitCode/ProviderSwitchUpdate.dart';
+import '../../../model/api_response.dart';
+import '../../../util/context_extenssion.dart';
 
-class Settings extends StatelessWidget {
+class Settings extends StatefulWidget {
+  @override
+  State<Settings> createState() => _SettingsState();
+}
+
+class _SettingsState extends State<Settings> {
   @override
   Widget build(BuildContext context) {
     bool NotifySwitch = Provider.of<ProviderSwitchUpdate>(context).NotifySwitch;
@@ -18,10 +27,6 @@ class Settings extends StatelessWidget {
         Provider.of<ProviderSwitchUpdate>(context).seeSavedRecipesSwitch;
     bool seeProfilesSwitch =
         Provider.of<ProviderSwitchUpdate>(context).seeProfilesSwitch;
-
-
-
-
 
     return Scaffold(
       body: Container(
@@ -53,7 +58,19 @@ class Settings extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    print(SharedPrefController()
+                        .getValueFor(PrefKeys.token.name)!);
+                    ApiResponse response = await AuthApiController().logout();
+                    if (response.success) {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LoginScreen()));
+                      context.ShowSnackBar(
+                          message: response.message, error: !response.success);
+                    }
+                  },
                   child: Row(
                     children: [
                       const Icon(Icons.logout),

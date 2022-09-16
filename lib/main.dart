@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-  import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
+import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
+import 'package:scratchfood/prefs/shared_pref_controller.dart';
+import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
 import 'SplitCode/ProviderSwitchUpdate.dart';
 
-
-void main() {
+void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+ await SharedPrefController().initPref();
   runApp(const MyApp());
 }
 
@@ -20,9 +22,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return ChangeNotifierProvider <ProviderSwitchUpdate>(
-      create: (context){
+    return ChangeNotifierProvider<ProviderSwitchUpdate>(
+      create: (context) {
         return ProviderSwitchUpdate();
       },
       child: ScreenUtilInit(
@@ -125,14 +126,21 @@ class MyApp extends StatelessWidget {
                         color: Colors.grey[500]!,
                       ),
                     ),
-                    labelStyle:
-                        GoogleFonts.neuton(fontSize: 15, color: Colors.grey[500]),
+                    labelStyle: GoogleFonts.neuton(
+                        fontSize: 15, color: Colors.grey[500]),
                   ),
                   iconTheme: IconThemeData(
                     color: Color(0xFFE3E3E3),
                     size: 24,
                   )),
               home: LoginScreen(),
+              initialRoute: LaunchScreen.screenNamed,
+              routes: {
+                LaunchScreen.screenNamed :(context)=>LaunchScreen(),
+                MainScreenController.mainScreenNamed :(context)=>MainScreenController(),
+                LoginScreen.loginScreenNamed :(context)=>LoginScreen(),
+
+              },
             );
           }),
     );

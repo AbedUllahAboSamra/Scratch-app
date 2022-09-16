@@ -7,6 +7,7 @@ import 'package:scratchfood/Screens/MainScreen/ProfileScreen/EditeProfile.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/RecipesPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/SavedPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/Settings.dart';
+import 'package:scratchfood/prefs/shared_pref_controller.dart';
 
 import '../../../ShardDesgin/ShardWidget.dart';
 import 'FollowingPage.dart';
@@ -117,7 +118,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'User Name',
+                      SharedPrefController()
+                          .getValueFor<String>(PrefKeys.name.name)!,
                       style: Theme.of(context)
                           .textTheme
                           .bodyText2

@@ -1,16 +1,40 @@
-// ignore_for_file: prefer_const_constructors
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
-import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
-
+import 'package:scratchfood/util/context_extenssion.dart';
+import '../../API/auth_api_controller.dart';
 import '../../ShardDesgin/ShardWidget.dart';
+import '../../model/api_response.dart';
 
-class CreateAccountScreen extends StatelessWidget {
-  var nameController = TextEditingController();
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+class CreateAccountScreen extends StatefulWidget {
+  @override
+  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+}
+
+class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  late TextEditingController nameController;
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    nameController = TextEditingController();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,8 +123,9 @@ class CreateAccountScreen extends StatelessWidget {
                 context: context,
                 lableText: 'Create Account',
                 onPresed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (ctx) => MainScreenController()));
+                  _performRegister();
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (ctx) => MainScreenController()));
                 }),
             Container(
               alignment: Alignment.center,
@@ -136,4 +161,33 @@ class CreateAccountScreen extends StatelessWidget {
       ),
     );
   }
+
+  void _performRegister() {
+    if (_checkData()) {
+      _register();
+    }
+  }
+
+  bool _checkData() {
+    if (emailController.text.isNotEmpty &&
+        nameController.text.isNotEmpty &&
+        passwordController.text.isNotEmpty) {
+      return true;
+    }
+    context.ShowSnackBar(message: 'Enter Required Data', error: true);
+    return false;
+  }
+
+  void _register() async {
+    ApiResponse response = await AuthApiController().register(
+        email: emailController.text,
+        password: passwordController.text,
+        name: nameController.text);
+    if (response.success) {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
+    context.ShowSnackBar(message: response.message, error: !response.success);
+  }
+
 }
