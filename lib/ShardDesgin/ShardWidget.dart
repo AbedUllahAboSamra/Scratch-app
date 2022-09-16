@@ -46,7 +46,7 @@ Widget ShardMaterialButton({
   double margenRight = 16.0,
   double margenLeft = 16.0,
   double radis = 8.0,
-  required Function onPresed,
+  required VoidCallback onPresed,
 }) {
   return Container(
     height: 50.h,
@@ -57,7 +57,7 @@ Widget ShardMaterialButton({
       highlightColor: Colors.transparent,
       focusColor: Colors.transparent,
       minWidth: double.infinity,
-      onPressed: () => onPresed,
+      onPressed: onPresed,
       child: Container(
         width: double.infinity,
         margin: EdgeInsets.only(top: 5.h),

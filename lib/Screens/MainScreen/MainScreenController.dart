@@ -5,6 +5,7 @@ import 'package:scratchfood/Screens/MainScreen/ProfileScreen/PtofileScreen.dart'
 import 'package:scratchfood/Screens/MainScreen/SearchScreen/SearchScreen.dart';
 
 class MainScreenController extends StatefulWidget {
+  static String mainScreenNamed = '/mainScreen';
   const MainScreenController({super.key});
 
   @override
@@ -28,10 +29,13 @@ class _MainScreenControllerState extends State<MainScreenController> {
         },
         items: [
           BottomNavigationBarItem(
-
-            icon: Image.asset("assets/Icon/search.png",color: MediaQuery.of(context).platformBrightness==Brightness.light?
-            Color(0xFF363837):Colors.grey[200]
-              ,),
+            icon: Image.asset(
+              "assets/Icon/search.png",
+              color:
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFF363837)
+                      : Colors.grey[200],
+            ),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/search.png",
@@ -39,9 +43,13 @@ class _MainScreenControllerState extends State<MainScreenController> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/Icon/home.png", color: MediaQuery.of(context).platformBrightness==Brightness.light?
-    Color(0xFF363837):Colors.grey[200]
-    ,),
+            icon: Image.asset(
+              "assets/Icon/home.png",
+              color:
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFF363837)
+                      : Colors.grey[200],
+            ),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/home.png",
@@ -49,18 +57,20 @@ class _MainScreenControllerState extends State<MainScreenController> {
             ),
           ),
           BottomNavigationBarItem(
-            icon: Image.asset("assets/Icon/profile.png",color: MediaQuery.of(context).platformBrightness==Brightness.light?
-            Color(0xFF363837):Colors.grey[200]
-              ,),
+            icon: Image.asset(
+              "assets/Icon/profile.png",
+              color:
+                  MediaQuery.of(context).platformBrightness == Brightness.light
+                      ? Color(0xFF363837)
+                      : Colors.grey[200],
+            ),
             label: "",
             activeIcon: Image.asset(
               "assets/Icon/profile.png",
               color: Color(0xFF30BE76),
-
             ),
           ),
         ],
-
       ),
     );
   }
