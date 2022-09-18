@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:math';
 
 import 'package:flutter/material.dart';
@@ -124,8 +126,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 lableText: 'Create Account',
                 onPresed: () {
                   _performRegister();
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (ctx) => MainScreenController()));
                 }),
             Container(
               alignment: Alignment.center,

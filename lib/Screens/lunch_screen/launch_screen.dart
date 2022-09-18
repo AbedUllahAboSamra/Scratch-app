@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:scratchfood/API/main_api_controller.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
-import 'package:scratchfood/SplitCode/ProviderMainController.dart';
+import 'package:scratchfood/SplitCode/MainController.dart';
 
 import '../../prefs/shared_pref_controller.dart';
 
@@ -17,10 +19,13 @@ class LaunchScreen extends StatefulWidget {
 }
 
 class _LaunchScreenState extends State<LaunchScreen> {
+
+  var controller = Get.put<MainController>(MainController());
+
   @override
   void initState() {
     super.initState();
-ProviderMainController().getRecipes();
+    controller.getRecipes();
     Future.delayed(const Duration(seconds: 3), () {
       String loggedIn =
           SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??

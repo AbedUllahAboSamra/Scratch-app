@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 
-class ProviderSwitchUpdate extends ChangeNotifier {
+class SettingController extends GetxController {
   bool NotifySwitch = false;
   bool messageSwitch = true;
   bool liveCookingSwitch = true;
@@ -14,30 +15,31 @@ class ProviderSwitchUpdate extends ChangeNotifier {
   bool isVisibleSearchScreen = false;
 
 //
+  static SettingController get to => Get.find() ;
 
   updateNotifySwitch(bool value) {
     NotifySwitch = value;
-    notifyListeners();
+    update();
   }
 
   updateMessageSwitch(bool value) {
     messageSwitch = value;
-    notifyListeners();
+    update();
   }
 
   updateLiveCookingSwitch(bool value) {
     liveCookingSwitch = value;
-    notifyListeners();
+    update();
   }
 
   updateSeeSavedRecipesSwitch(bool value) {
     seeSavedRecipesSwitch = value;
-    notifyListeners();
+    update();
   }
 
   updateSeeProfilesSwitch(bool value) {
     seeProfilesSwitch = value;
-    notifyListeners();
+    update();
   }
 
 }

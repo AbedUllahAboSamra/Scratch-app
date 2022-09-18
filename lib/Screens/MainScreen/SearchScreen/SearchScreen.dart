@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import '../../../ShardDesgin/ShardWidget.dart';
-import '../../../SplitCode/ProviderSwitchUpdate.dart';
+import '../../../SplitCode/SettingController.dart';
 
 class Search extends StatefulWidget {
   @override
@@ -43,7 +42,6 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    var a = Provider.of<ProviderSwitchUpdate>(context).isVisibleSearchScreen;
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Container(

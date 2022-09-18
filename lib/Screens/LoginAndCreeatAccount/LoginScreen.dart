@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 import 'package:scratchfood/API/auth_api_controller.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeScreen.dart';
 import 'package:scratchfood/util/context_extenssion.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
-import '../../SplitCode/ProviderSwitchUpdate.dart';
+import '../../SplitCode/SettingController.dart';
 import '../../model/api_response.dart';
 import '../MainScreen/MainScreenController.dart';
 
@@ -38,7 +37,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<ProviderSwitchUpdate>(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
