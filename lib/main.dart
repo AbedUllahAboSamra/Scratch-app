@@ -3,14 +3,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
-import 'SplitCode/ProviderMainController.dart';
-import 'SplitCode/ProviderSwitchUpdate.dart';
+import 'SplitCode/MainController.dart';
+import 'SplitCode/SettingController.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,19 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(providers: [
-    ChangeNotifierProvider<ProviderSwitchUpdate>(
-    create: (context) {
-      return ProviderSwitchUpdate();
-    },
-    ),
-      ChangeNotifierProvider<ProviderMainController>(
-    create: (context) {
-      return ProviderMainController()..getRecipes();
-    },
-    ),
-    ],
-      child: ScreenUtilInit(
+    return ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
           splitScreenMode: true,
@@ -150,7 +137,6 @@ class MyApp extends StatelessWidget {
 
               },
             );
-          }),
-    );
+          });
   }
 }

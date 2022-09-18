@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeCardDetails.dart';
+import 'package:scratchfood/SplitCode/MainController.dart';
 
 class Home extends StatelessWidget {
+
+  var controller = Get.put<MainController>(MainController());
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,24 +34,25 @@ class Home extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    IconButton(                      splashColor: Colors.transparent,
+                    IconButton(
+                      splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onPressed: () {},
                       icon: Icon(
                         Icons.notifications_none,
                         size: 20.h,
-                       ),
+                      ),
                     ),
                     IconButton(
-                      splashColor: Colors.transparent,
+                        splashColor: Colors.transparent,
                         focusColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onPressed: () {},
                         icon: Icon(
                           Icons.mail_outline,
                           size: 20.h,
-                         ))
+                        ))
                   ],
                 ),
               ],
@@ -55,15 +60,18 @@ class Home extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView(
-            physics: BouncingScrollPhysics(),
-            scrollDirection: Axis.horizontal,
-
-            children: [
-              HomeCardDetails(),
-              HomeCardDetails(),
-              HomeCardDetails(),
-            ],
+          child: GetX<MainController>(
+            builder: (controller){
+              return ListView(
+                  physics: BouncingScrollPhysics(),
+                  scrollDirection: Axis.horizontal,
+                  children:
+                      controller.recipeList.value
+                  .map((e) {
+                return HomeCardDetails();
+              }).toList(),
+              );
+            },
           ),
         ),
       ],
