@@ -3,4 +3,8 @@ class ApiSettings {
   static String LOGIN = "$BASEURL/auth/login";
   static String REGISTER = "$BASEURL/auth/register";
   static String LOGOUT = "$BASEURL/auth/logout";
+  static String GETRECPY = "$BASEURL/recipe/GetRecipe";
+
+
+
 }

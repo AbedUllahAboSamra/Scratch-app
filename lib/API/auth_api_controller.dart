@@ -68,6 +68,7 @@ class AuthApiController with ApiHelpers {
       HttpHeaders.authorizationHeader: token,
       HttpHeaders.acceptHeader: 'application/json',
     });
+    print(response.body);
 
     if (response.statusCode == 200 || response.statusCode == 401) {
       var json = jsonDecode(response.body);

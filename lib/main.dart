@@ -9,6 +9,7 @@ import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
+import 'SplitCode/ProviderMainController.dart';
 import 'SplitCode/ProviderSwitchUpdate.dart';
 
 void main() async{
@@ -22,10 +23,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<ProviderSwitchUpdate>(
-      create: (context) {
-        return ProviderSwitchUpdate();
-      },
+    return MultiProvider(providers: [
+    ChangeNotifierProvider<ProviderSwitchUpdate>(
+    create: (context) {
+      return ProviderSwitchUpdate();
+    },
+    ),
+      ChangeNotifierProvider<ProviderMainController>(
+    create: (context) {
+      return ProviderMainController()..getRecipes();
+    },
+    ),
+    ],
       child: ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,
@@ -133,7 +142,6 @@ class MyApp extends StatelessWidget {
                     color: Color(0xFFE3E3E3),
                     size: 24,
                   )),
-              home: LoginScreen(),
               initialRoute: LaunchScreen.screenNamed,
               routes: {
                 LaunchScreen.screenNamed :(context)=>LaunchScreen(),

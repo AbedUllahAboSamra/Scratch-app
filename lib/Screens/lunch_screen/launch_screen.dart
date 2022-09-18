@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scratchfood/API/main_api_controller.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
+import 'package:scratchfood/SplitCode/ProviderMainController.dart';
 
 import '../../prefs/shared_pref_controller.dart';
 
@@ -17,8 +19,8 @@ class LaunchScreen extends StatefulWidget {
 class _LaunchScreenState extends State<LaunchScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+ProviderMainController().getRecipes();
     Future.delayed(const Duration(seconds: 3), () {
       String loggedIn =
           SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
