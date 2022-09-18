@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import '../../../API/auth_api_controller.dart';
-import '../../../SplitCode/SettingController.dart';
+import '../../../get/setting/SettingController.dart';
 import '../../../model/api_response.dart';
 import '../../../util/context_extenssion.dart';
 
@@ -16,13 +16,13 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  SettingController controller=Get.put(SettingController());
 
-  var controller = Get.put<SettingController>(SettingController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GetX<SettingController>(
-        builder: (conroller) {
+      body: GetBuilder<SettingController>(
+        builder: (controller) {
           return SafeArea(
             child: Container(
               padding: EdgeInsets.only(left: 25.w, right: 25.sp),
@@ -54,19 +54,7 @@ class _SettingsState extends State<Settings> {
                       ),
                       InkWell(
                         onTap: () async {
-                          print(SharedPrefController()
-                              .getValueFor(PrefKeys.token.name)!);
-                          ApiResponse response =
-                              await AuthApiController().logout();
-                          if (response.success) {
-                            Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginScreen()));
-                            context.ShowSnackBar(
-                                message: response.message,
-                                error: !response.success);
-                          }
+                          performLogOut();
                         },
                         child: Row(
                           children: [
@@ -112,9 +100,9 @@ class _SettingsState extends State<Settings> {
                           child: CupertinoSwitch(
                             activeColor: Colors.green,
                             thumbColor: Colors.white,
-                            value: conroller.NotifySwitch,
+                            value: controller.NotifySwitch,
                             onChanged: (value) {
-                              conroller.updateNotifySwitch(value);
+                              controller.updateNotifySwitch(value);
                             },
                           ),
                         )
@@ -135,9 +123,10 @@ class _SettingsState extends State<Settings> {
                             child: CupertinoSwitch(
                               activeColor: Colors.green,
                               thumbColor: Colors.white,
-                              value: conroller.messageSwitch,
-                              onChanged: (value) {conroller
-                                    .updateMessageSwitch(value);
+                              value: controller.messageSwitch,
+                              onChanged: (value) {
+                                controller
+                                  .updateMessageSwitch(value);
                               },
                             ),
                           ),
@@ -157,9 +146,10 @@ class _SettingsState extends State<Settings> {
                             child: CupertinoSwitch(
                               activeColor: Colors.green,
                               thumbColor: Colors.white,
-                              value: conroller.liveCookingSwitch,
-                              onChanged: (value) {conroller
-                                    .updateLiveCookingSwitch(value);
+                              value:controller.liveCookingSwitch,
+                              onChanged: (value) {
+                                controller
+                                  .updateLiveCookingSwitch(value);
                               },
                             ),
                           ),
@@ -191,9 +181,10 @@ class _SettingsState extends State<Settings> {
                           child: CupertinoSwitch(
                             activeColor: Colors.green,
                             thumbColor: Colors.white,
-                            value: conroller.seeSavedRecipesSwitch,
-                            onChanged: (value) {conroller
-                                  .updateSeeSavedRecipesSwitch(value);
+                            value: controller.seeSavedRecipesSwitch,
+                            onChanged: (value) {
+                              controller
+                                .updateSeeSavedRecipesSwitch(value);
                             },
                           ),
                         ),
@@ -202,7 +193,7 @@ class _SettingsState extends State<Settings> {
                   ),
                   Container(
                     padding:
-                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                    EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
                     margin: EdgeInsets.only(bottom: 20.h),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8.r),
@@ -214,7 +205,7 @@ class _SettingsState extends State<Settings> {
                       TextSpan(children: [
                         const TextSpan(
                             text:
-                                "If disabled, you won’t be able to see recipes saved by other profiles. Leave this enabled to share your collected recipes to others. "),
+                            "If disabled, you won’t be able to see recipes saved by other profiles. Leave this enabled to share your collected recipes to others. "),
                         TextSpan(
                             text: "why this matter?",
                             style: const TextStyle(color: Colors.green),
@@ -237,9 +228,10 @@ class _SettingsState extends State<Settings> {
                             child: CupertinoSwitch(
                               activeColor: Colors.green,
                               thumbColor: Colors.white,
-                              value: conroller.seeProfilesSwitch,
-                              onChanged: (value) {conroller
-                                    .updateSeeProfilesSwitch(value);
+                              value:  controller.seeProfilesSwitch,
+                              onChanged: (value) {
+                                controller
+                                  .updateSeeProfilesSwitch(value);
                               },
                             ),
                           ),
@@ -267,7 +259,22 @@ class _SettingsState extends State<Settings> {
             ),
           );
         },
-      ),
+
+      )
     );
+  }
+
+  void performLogOut() async{
+    ApiResponse response =
+        await AuthApiController().logout();
+    if (response.success) {
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => LoginScreen()));
+      context.ShowSnackBar(
+          message: response.message,
+          error: !response.success);
+    }
   }
 }

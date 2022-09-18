@@ -1,11 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:scratchfood/API/main_api_controller.dart';
-import 'package:scratchfood/model/recipe.dart';
-
 class MainController extends GetxController {
   late RxList recipeList=[].obs ;
+  RxBool loading=false.obs;
+  @override
+  void onInit() {
+    getRecipes();
+    super.onInit();
+  }
 
 
   MainApiController mainApiController = MainApiController();
@@ -13,26 +15,10 @@ class MainController extends GetxController {
 
   static MainController get to => Get.find() ;
 
-
-
   getRecipes() async{
-    recipeList.clear();
-    print('انا اشتغلت  ي جدعان');
-
+    loading.value=true;
     recipeList.value = await mainApiController.getRecipes();
-
+    loading.value=false;
     update();
   }
-
-
-
-
-
-
-
-
-
-
-
-
 }

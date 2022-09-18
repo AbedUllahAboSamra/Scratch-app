@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../ShardDesgin/ShardWidget.dart';
-import '../../../SplitCode/SettingController.dart';
+import '../../../get/setting/SettingController.dart';
 
 class Search extends StatefulWidget {
   @override

@@ -2,14 +2,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scratchfood/Screens/MainScreen/ProfileScreen/followers_screen.dart';
 import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
-import 'SplitCode/MainController.dart';
-import 'SplitCode/SettingController.dart';
+import 'get/setting/SettingController.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -134,8 +135,10 @@ class MyApp extends StatelessWidget {
                 LaunchScreen.screenNamed :(context)=>LaunchScreen(),
                 MainScreenController.mainScreenNamed :(context)=>MainScreenController(),
                 LoginScreen.loginScreenNamed :(context)=>LoginScreen(),
+                FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
 
               },
+              navigatorKey: Get.key,
             );
           });
   }

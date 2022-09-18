@@ -1,5 +1,5 @@
-
 class Comments {
+  String? nameUser;
   int? id;
   int? userId;
   int? recipeId;
@@ -8,7 +8,8 @@ class Comments {
   String? comment;
 
   Comments(
-      {this.id,
+      {this.nameUser,
+        this.id,
         this.userId,
         this.recipeId,
         this.createdAt,
@@ -16,6 +17,7 @@ class Comments {
         this.comment});
 
   Comments.fromJson(Map<String, dynamic> json) {
+    nameUser = json['nameUser'];
     id = json['id'];
     userId = json['user_id'];
     recipeId = json['recipe_id'];
@@ -26,6 +28,7 @@ class Comments {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nameUser'] = this.nameUser;
     data['id'] = this.id;
     data['user_id'] = this.userId;
     data['recipe_id'] = this.recipeId;

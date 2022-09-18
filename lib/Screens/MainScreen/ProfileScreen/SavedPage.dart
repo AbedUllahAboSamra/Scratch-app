@@ -23,8 +23,9 @@ class SavedPage extends StatelessWidget {
         bottom: 30.h,
       ),
 
-      itemBuilder: (context, index) => ShardProfileRepceItem(
-          context: context, ImageUrl: 'assets/Image.jpg', MealName: 'Recs',),
+      itemBuilder: (context, index) =>Text('data'),
+          // ShardProfileRepceItem(
+          // context: context, ImageUrl: 'assets/Image.jpg', MealName: 'Recs',),
 
       itemCount: 2,
     );

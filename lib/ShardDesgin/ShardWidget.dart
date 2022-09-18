@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/model/follower.dart';
+
+import '../model/category.dart';
 
 Widget ShardTextFromFiled({
   required BuildContext context,
@@ -108,7 +111,9 @@ Widget ShardTextToTabView({
 }
 
 Widget ShardProfileRepceItem({
+
   required String MealName,
+  required Category category,
   required String ImageUrl,
   required BuildContext context,
 }) {
@@ -135,7 +140,7 @@ Widget ShardProfileRepceItem({
           margin: EdgeInsets.symmetric(vertical: 4.h),
           alignment: Alignment.center,
           child: Text(
-            MealName,
+            category.name!,
             style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
@@ -147,8 +152,7 @@ Widget ShardProfileRepceItem({
 }
 
 Widget ShardProfileUserDisgin({
-  required String MealName,
-  required String ImageUrl,
+  required Follower follower,
   required BuildContext context,
 }) {
   return Container(
@@ -157,7 +161,7 @@ Widget ShardProfileUserDisgin({
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        SharedCircllerImage(width: 50.h, height: 50.h, ImageLink: ImageUrl),
+        SharedCircllerImage(width: 50.h, height: 50.h, ImageLink: follower.image??'assets/Image/avatar.png'),
         SizedBox(
           width: 14.w,
         ),
@@ -166,13 +170,13 @@ Widget ShardProfileUserDisgin({
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              'User Name',
+              follower.name!,
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
                     fontSize: 15.sp,
                   ),
             ),
             Text(
-              'Account Name',
+              follower.bio??'',
               style: Theme.of(context).textTheme.bodyText2?.copyWith(
                   fontSize: 15.sp,
                   color: MediaQuery.of(context).platformBrightness ==
