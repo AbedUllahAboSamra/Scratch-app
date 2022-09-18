@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/model/recipe.dart';
 
 class HomeCardDetails extends StatelessWidget {
-  const HomeCardDetails({super.key});
+  RecipeModel recipeModel;
+   HomeCardDetails({super.key,required this.recipeModel});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class HomeCardDetails extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Profile Name",
+                        recipeModel.nameUser!,
                         style:  Theme.of(context).textTheme.headline6?.copyWith(
                             fontSize: 12.sp,
                           fontWeight: FontWeight.w600
@@ -67,7 +69,7 @@ class HomeCardDetails extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                   Text(
-                  "Red Wine and Mint Soufflé",
+               recipeModel.name!,
                   style:  Theme.of(context).textTheme.bodyText2?.copyWith(
                        fontWeight: FontWeight.w600
                   ),
@@ -84,7 +86,7 @@ class HomeCardDetails extends StatelessWidget {
           Container(
             margin: EdgeInsets.symmetric(horizontal: 13.w),
             child: Text(
-              "Apparently we had reached a great height in the atmosphere, for the sky was …",
+              recipeModel.how!,
               style:  Theme.of(context).textTheme.headline6?.copyWith(
 fontSize: 12.sp,
               color: MediaQuery.of(context).platformBrightness==Brightness.light?
@@ -106,7 +108,7 @@ fontSize: 12.sp,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text("32 likes",
+                      Text("${recipeModel.likesCount!} likes",
                           style: Theme.of(context)
                               .textTheme
                               .headline6
@@ -125,7 +127,7 @@ fontSize: 12.sp,
                           borderRadius: BorderRadius.circular(50.r),
                         ),
                       ),
-                      Text("8 Comments",
+                      Text("${recipeModel.comments!.length} Comments",
                           style: Theme.of(context)
                               .textTheme
                               .headline6

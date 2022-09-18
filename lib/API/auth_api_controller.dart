@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:scratchfood/API/api_setting.dart';
-import 'package:scratchfood/model/user.dart';
 import 'package:scratchfood/model/user_model.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 

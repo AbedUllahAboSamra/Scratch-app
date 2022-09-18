@@ -1,6 +1,7 @@
 import 'comment.dart';
 
 class RecipeModel {
+  String? nameUser;
   int? id;
   int? categoryId;
   String? name;
@@ -16,7 +17,8 @@ class RecipeModel {
   List<Comments>? comments;
 
   RecipeModel(
-      {this.id,
+      {this.nameUser,
+        this.id,
         this.categoryId,
         this.name,
         this.image,
@@ -31,6 +33,7 @@ class RecipeModel {
         this.comments});
 
   RecipeModel.fromJson(Map<String, dynamic> json) {
+    nameUser = json['nameUser'];
     id = json['id'];
     categoryId = json['Category_id'];
     name = json['name'];
@@ -53,6 +56,7 @@ class RecipeModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['nameUser'] = this.nameUser;
     data['id'] = this.id;
     data['Category_id'] = this.categoryId;
     data['name'] = this.name;

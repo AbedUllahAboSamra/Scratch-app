@@ -7,7 +7,7 @@ import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeScreen.dart';
 import 'package:scratchfood/util/context_extenssion.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
-import '../../SplitCode/SettingController.dart';
+import '../../get/setting/SettingController.dart';
 import '../../model/api_response.dart';
 import '../MainScreen/MainScreenController.dart';
 

@@ -6,8 +6,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:scratchfood/API/main_api_controller.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
-import 'package:scratchfood/SplitCode/MainController.dart';
 
+import '../../get/main/MainGetxController.dart';
 import '../../prefs/shared_pref_controller.dart';
 
 class LaunchScreen extends StatefulWidget {
