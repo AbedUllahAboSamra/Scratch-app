@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:scratchfood/Screens/MainScreen/ProfileScreen/EditeProfile.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/followers_screen.dart';
 import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
@@ -139,7 +140,7 @@ class MyApp extends StatelessWidget {
                 LoginScreen.loginScreenNamed :(context)=>LoginScreen(),
                 FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
                 AddRecipeScreen.screenNamed : (context)=>AddRecipeScreen(),
-                AddCategoryScreen.screenNamed : (context)=>AddCategoryScreen(),
+                AddCategoryScreen.screenNamed : (context)=>EditeProfile(),
               },
               navigatorKey: Get.key,
             );
