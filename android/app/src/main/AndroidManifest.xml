@@ -1,6 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.scratchfood.scratchfood">
-   <application
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <application
         android:label="scratchfood"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">

@@ -9,6 +9,8 @@ import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
+import 'Screens/MainScreen/AddScreens/AddCategoryScreen.dart';
+import 'Screens/MainScreen/AddScreens/add_recipes_screen.dart';
 import 'Screens/MainScreen/MainScreenController.dart';
 import 'get/setting/SettingController.dart';
 
@@ -130,13 +132,14 @@ class MyApp extends StatelessWidget {
                     color: Color(0xFFE3E3E3),
                     size: 24,
                   )),
-              initialRoute: LaunchScreen.screenNamed,
+              initialRoute: AddCategoryScreen.screenNamed,
               routes: {
                 LaunchScreen.screenNamed :(context)=>LaunchScreen(),
                 MainScreenController.mainScreenNamed :(context)=>MainScreenController(),
                 LoginScreen.loginScreenNamed :(context)=>LoginScreen(),
                 FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
-
+                AddRecipeScreen.screenNamed : (context)=>AddRecipeScreen(),
+                AddCategoryScreen.screenNamed : (context)=>AddCategoryScreen(),
               },
               navigatorKey: Get.key,
             );
