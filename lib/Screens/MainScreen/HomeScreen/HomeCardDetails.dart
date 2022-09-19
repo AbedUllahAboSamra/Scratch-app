@@ -4,6 +4,7 @@ import 'package:scratchfood/model/recipe.dart';
 
 class HomeCardDetails extends StatelessWidget {
   RecipeModel recipeModel;
+
    HomeCardDetails({super.key,required this.recipeModel});
 
   @override

@@ -13,8 +13,7 @@ class AuthApiController with ApiHelpers {
   Future<ApiResponse> login(
       {required String email, required String password}) async {
     Uri uri = Uri.parse(ApiSettings.LOGIN);
-    print(email);
-    print(password);
+
     var response = await http.post(uri, body: {
       'email': email,
       'password': password,

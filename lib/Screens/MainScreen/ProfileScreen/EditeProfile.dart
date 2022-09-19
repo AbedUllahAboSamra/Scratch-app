@@ -29,7 +29,7 @@ class EditeProfile extends StatelessWidget {
                 child: const Text("Edit Profile")),
             Container(
               margin: EdgeInsets.only(),
-              child: Image.asset(""),
+              child: null,
             )
           ],
         ),

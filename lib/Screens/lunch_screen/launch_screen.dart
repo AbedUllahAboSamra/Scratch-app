@@ -60,7 +60,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
                     width: 3.w,
                   ),
                   Text(
-                    'Scartch',
+                    'Scratch',
                     style: Theme.of(context).textTheme.headline1,
                   ),
                 ],

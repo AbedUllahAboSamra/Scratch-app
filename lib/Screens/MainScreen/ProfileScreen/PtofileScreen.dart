@@ -68,7 +68,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     super.dispose();
   }
 
-  var arr = [RecipesPage(), SavedPage(), FollowingPage()];
+
 
   @override
   Widget build(BuildContext context) {
@@ -480,7 +480,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                     SizedBox(
                       height: 20.h,
                     ),
-                    arr[selectedItem],
+                    arrayPages[selectedItem],
                     SizedBox(
                       height: 5,
                     )

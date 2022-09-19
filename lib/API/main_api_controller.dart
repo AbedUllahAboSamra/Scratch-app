@@ -6,18 +6,11 @@ import 'dart:io';
 import 'package:scratchfood/model/recipe.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 
-import '../model/api_response.dart';
 import '../util/api_helpers.dart';
 import 'api_setting.dart';
 
 import 'package:http/http.dart' as http;
-class MainApiController with ApiHelpers {
-
-
-
-
-
-
+class MainApiController   {
 
   Future<List<RecipeModel>> getRecipes() async {
 
@@ -40,13 +33,5 @@ return json.map((e) {
     }
 return[];
     }
-
-
-
-
-
-
-
-
 
 }

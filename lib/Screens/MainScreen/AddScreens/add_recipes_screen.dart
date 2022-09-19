@@ -7,6 +7,8 @@ import 'package:scratchfood/Screens/MainScreen/HomeScreen/MyRecipesScreen.dart';
 import 'package:scratchfood/ShardDesgin/ShardWidget.dart';
 
 class AddRecipeScreen extends StatefulWidget {
+  static String screenNamed = '/add_recipe_screen';
+
   AddRecipeScreen({Key? key}) : super(key: key);
 
   @override
@@ -18,24 +20,16 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
+     super.initState();
     nameRecipeController = TextEditingController();
   }
 
   @override
   void dispose() {
     nameRecipeController.dispose();
-    // TODO: implement dispose
-    super.dispose();
+     super.dispose();
   }
 
-  Path customPath = Path()
-    ..moveTo(20, 20)
-    ..lineTo(50, 100)
-    ..lineTo(20, 200)
-    ..lineTo(100, 100)
-    ..lineTo(20, 20);
 
   @override
   Widget build(BuildContext context) {
@@ -43,8 +37,11 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(
-          Icons.arrow_back_ios,
+        leading: IconButton(
+          onPressed:(){
+            Navigator.pop(context);
+          },
+         icon:Icon( Icons.arrow_back_ios),
           color: Color(0xff363837),
         ),
         title: Text(
@@ -206,6 +203,15 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                 ),
               ),
             ),
+
+
+
+
+
+
+
+
+
           ],
         ),
       ),
