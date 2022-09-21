@@ -133,7 +133,7 @@ class MyApp extends StatelessWidget {
                     color: Color(0xFFE3E3E3),
                     size: 24,
                   )),
-              initialRoute: AddCategoryScreen.screenNamed,
+              initialRoute: LaunchScreen.screenNamed,
               routes: {
                 LaunchScreen.screenNamed :(context)=>LaunchScreen(),
                 MainScreenController.mainScreenNamed :(context)=>MainScreenController(),

@@ -23,13 +23,11 @@ class ProfileGetxController extends GetxController {
   }
 
   getFollowers({required int id}) async{
-    print(id);
     loading.value=true;
     followers.value = (await profileApiController.getFollowers(id: id));
     loading.value=false;
   }
   getFollowing({required int id}) async{
-    print(id);
     loading.value=true;
     following.value = (await profileApiController.getFollowing(id: id));
     loading.value=false;

@@ -22,8 +22,7 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> with TickerProviderStateMixin {
-  ProfileGetxController profileGetxController =
-      Get.put(ProfileGetxController());
+
   late final AnimationController _controllerLeftToRight;
 
   late final Animation<double> _animationLeftToRight;
@@ -39,18 +38,6 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
       vsync: this,
     )..forward();
 
-    // print(SharedPrefController().getValueFor(PrefKeys.id.name));
-
-    Future.delayed(Duration(seconds: 0),() {
-      profileGetxController.getUserProfile(
-          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
-
-
-    },);
-    Future.delayed(Duration(seconds: 0),() {
-      profileGetxController.getFollowing(
-          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
-    },);
     _controllerLeftToRight.forward(
       from: 0,
     );

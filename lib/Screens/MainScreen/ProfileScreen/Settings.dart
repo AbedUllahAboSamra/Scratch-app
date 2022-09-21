@@ -268,6 +268,7 @@ class _SettingsState extends State<Settings> {
     ApiResponse response =
         await AuthApiController().logout();
     if (response.success) {
+      SharedPrefController().clear();
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(

@@ -62,7 +62,6 @@ var notNull = false;
                 ),
                 InkWell(
                   onTap: (){
-
                   controller.picCategoryImage();
                   },
                   child: Container(

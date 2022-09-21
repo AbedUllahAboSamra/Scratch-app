@@ -10,7 +10,10 @@ import 'package:http/http.dart' as http;
 
 class ProfileApiController {
   Future<Profile?>  getUserProfile({required int id})async{
-      String token=SharedPrefController().getValueFor<String>(PrefKeys.token.name)!;
+    print('**********');
+    print(id);
+    print('**********');
+    String token=SharedPrefController().getValueFor<String>(PrefKeys.token.name)!;
       Uri uri = Uri.parse(ApiSettings.PROFILE + '/?user_id=${id}');
       var response = await http.get(uri, headers: {
         HttpHeaders.acceptHeader: 'application/json',

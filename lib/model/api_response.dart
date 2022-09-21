@@ -1,7 +1,8 @@
-class ApiResponse{
-  final bool success;
+class ApiResponse<T>{
   final String message;
+  final bool success;
+  final T? object;
 
-  ApiResponse({required this.message,this.success=false});
+  ApiResponse(this.message,this.success, [this.object]);
 
 }
