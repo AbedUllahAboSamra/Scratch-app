@@ -1,3 +1,4 @@
+
 import 'comment.dart';
 
 class RecipeModel {
@@ -7,11 +8,11 @@ class RecipeModel {
   String? name;
   String? image;
   String? how;
-  String? additional;
+  List<String>? additional;
   String? createdAt;
   String? updatedAt;
   int? userId;
-  String? ingredients;
+  List<String>? ingredients;
   List<String>? album;
   int? likesCount;
   List<Comments>? comments;
@@ -39,11 +40,11 @@ class RecipeModel {
     name = json['name'];
     image = json['image'];
     how = json['how'];
-    additional = json['additional'];
+    additional = json['additional'].cast<String>();
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     userId = json['user_id'];
-    ingredients = json['ingredients'];
+    ingredients = json['ingredients'].cast<String>();
     album = json['album'].cast<String>();
     likesCount = json['likes_count'];
     if (json['comments'] != null) {
@@ -75,4 +76,3 @@ class RecipeModel {
     return data;
   }
 }
-

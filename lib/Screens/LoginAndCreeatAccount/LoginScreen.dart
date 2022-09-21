@@ -4,6 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scratchfood/API/auth_api_controller.dart';
 import 'package:scratchfood/Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeScreen.dart';
+import 'package:scratchfood/get/main/MainGetxController.dart';
+import 'package:scratchfood/get/profile/profileGetxController.dart';
+import 'package:scratchfood/prefs/shared_pref_controller.dart';
 import 'package:scratchfood/util/context_extenssion.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
@@ -173,11 +176,22 @@ class _LoginScreenState extends State<LoginScreen> {
       email: emailController.text,
       password: passwordController.text,
     );
-    print(response.success);
     if (response.success) {
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => MainScreenController()));
+      Future.delayed(const Duration(milliseconds: 600), () {
+        MainController.to.getRecipes();
+
+        ProfileGetxController.to.getUserProfile(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+
+        ProfileGetxController.to.getFollowing(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+        Navigator.pushReplacement(context,
+            MaterialPageRoute(builder: (context) => MainScreenController()));
+      });
     }
     context.ShowSnackBar(message: response.message, error: !response.success);
   }
 }
+

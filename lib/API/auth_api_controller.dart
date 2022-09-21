@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:scratchfood/API/api_setting.dart';
+import 'package:scratchfood/model/user.dart';
 import 'package:scratchfood/model/user_model.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 
@@ -10,7 +11,7 @@ import '../model/api_response.dart';
 import '../util/api_helpers.dart';
 
 class AuthApiController with ApiHelpers {
-  Future<ApiResponse> login(
+  Future<ApiResponse<User>> login(
       {required String email, required String password}) async {
     Uri uri = Uri.parse(ApiSettings.LOGIN);
 
@@ -23,16 +24,15 @@ class AuthApiController with ApiHelpers {
     var json = jsonDecode(response.body);
     if (response.statusCode == 200) {
       UserModel user = UserModel.fromJson(json);
-      print(user.token);
 
       SharedPrefController().save(user);
-      return ApiResponse(message: 'logged Successfully', success: true);
+      return ApiResponse<User>( 'logged Successfully', true,user.user);
     } else if (response.statusCode == 422) {
-      return ApiResponse(message: json['message'], success: false);
+      return ApiResponse( json['message'],  false);
     } else if (response.statusCode == 401) {
-      return ApiResponse(message: json['massage'], success: false);
+      return ApiResponse( json['massage'],  false);
     } else {
-      return errorResponse;
+      return ApiResponse( 'something went wrong , try again', false);
     }
   }
 
@@ -51,8 +51,8 @@ class AuthApiController with ApiHelpers {
     if (response.statusCode == 200 || response.statusCode == 422) {
       var json = jsonDecode(response.body);
       return ApiResponse(
-          message: json['message'],
-          success: json['status'].toString() == '200');
+          json['message'],
+           json['status'].toString() == '200');
     }
 
     return errorResponse;
@@ -72,8 +72,8 @@ class AuthApiController with ApiHelpers {
       var json = jsonDecode(response.body);
       SharedPrefController().clear();
       return ApiResponse(
-          message: json['message'],
-          success: json['status'].toString() == '200');
+           json['message'],
+           json['status'].toString() == '200');
     }
     SharedPrefController().clear();
 
