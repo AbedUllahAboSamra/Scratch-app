@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:scratchfood/API/profile_api_controller.dart';
+import 'package:scratchfood/Screens/MainScreen/AddScreens/AddCategoryScreen.dart';
+import 'package:scratchfood/Screens/MainScreen/AddScreens/add_recipes_screen.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/EditeProfile.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/RecipesPage.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/SavedPage.dart';
@@ -41,16 +43,22 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
 
     // print(SharedPrefController().getValueFor(PrefKeys.id.name));
 
-    Future.delayed(Duration(seconds: 0),() {
-      profileGetxController.getUserProfile(
-          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
-
-
-    },);
-    Future.delayed(Duration(seconds: 0),() {
-      profileGetxController.getFollowing(
-          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
-    },);
+    Future.delayed(
+      Duration(seconds: 0),
+      () {
+        profileGetxController.getUserProfile(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+      },
+    );
+    Future.delayed(
+      Duration(seconds: 0),
+      () {
+        profileGetxController.getFollowing(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+      },
+    );
     _controllerLeftToRight.forward(
       from: 0,
     );
@@ -67,8 +75,6 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
     _controllerLeftToRight.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -113,17 +119,75 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                 SizedBox(
                                   width: 4.w,
                                 ),
-                                Text(
-                                  'Settings',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline6
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                ),
                               ],
                             ),
+                          ),
+                          InkWell(
+                            highlightColor: Colors.transparent,
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            child: Icon(Icons.add),
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      content: Container(
+                                        width: double.infinity,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              onTap: () {
+                                                Get.toNamed(AddCategoryScreen
+                                                    .screenNamed);
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Icon(Icons.add),
+                                                  Text(
+                                                    'Add category',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 10.h,
+                                            ),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              onTap: () {
+                                                Get.toNamed(AddRecipeScreen
+                                                    .screenNamed);
+                                              },
+                                              child: Row(
+                                                children: [
+                                                  Icon(Icons.add),
+                                                  Text(
+                                                    'Add recipe',
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2,
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
                           ),
                         ],
                       ),
@@ -189,7 +253,8 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                                   : Colors.grey[200]),
                                     ),
                                     onTap: () {
-                                      Navigator.pushNamed(context, FollowersScreen.ScreenNamed);
+                                      Navigator.pushNamed(
+                                          context, FollowersScreen.ScreenNamed);
                                     },
                                   ),
                                   SizedBox(
@@ -232,9 +297,12 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (context) => EditeProfile(
-                                  bio: controller.user.value.bio.toString(),
-                                  name: controller.user.value.name.toString(),
-                                  email: controller.user.value.email.toString(),
+                                  bio: controller.userProfile.value.bio
+                                      .toString(),
+                                  name: controller.userProfile.value.name
+                                      .toString(),
+                                  email: controller.userProfile.value.email
+                                      .toString(),
                                 ),
                               ));
                             },
@@ -296,7 +364,13 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text: '20',
+                                        text: controller.userProfile.value
+                                                    .category ==
+                                                null
+                                            ? '0'
+                                            : controller.userProfile.value
+                                                .category!.length
+                                                .toString(),
                                         isSelected: selectedItem == 0),
                                     Spacer(),
                                     ShardTextToTabView(

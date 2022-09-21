@@ -140,7 +140,7 @@ class MyApp extends StatelessWidget {
                 LoginScreen.loginScreenNamed :(context)=>LoginScreen(),
                 FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
                 AddRecipeScreen.screenNamed : (context)=>AddRecipeScreen(),
-                AddCategoryScreen.screenNamed : (context)=>EditeProfile(name: '',bio: '',email: ''),
+                AddCategoryScreen.screenNamed : (context)=>AddCategoryScreen(),
               },
               navigatorKey: Get.key,
             );

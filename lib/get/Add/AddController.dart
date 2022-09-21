@@ -17,6 +17,7 @@ class AddController extends GetxController {
 
   final ImagePicker _picker = ImagePicker();
   File? categoryImage;
+  File? recpyImage;
   List<File> imageFileList = [];
   RxList<TextEditingController> listAdditionalInfoControllers = [
     TextEditingController()
@@ -54,7 +55,18 @@ class AddController extends GetxController {
   }
 
 
+  picRecpyImage() async {
+    recpyImage = null;
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
 
+    if (!image.isNull) {print(File(image!.path));
+    recpyImage = File(image .path);
+
+    update();
+    }
+    update();
+
+  }
 
 
 
@@ -92,7 +104,7 @@ class AddController extends GetxController {
  }){
     var b = listIngredientsInfoControllers.length;
     var a = listAdditionalInfoControllers.length;
-    if(listAdditionalInfoControllers[a].text.isNotEmpty&&listIngredientsInfoControllers[b].text.isNotEmpty &&categoryImage!=null
+    if(listAdditionalInfoControllers[a].text.isNotEmpty&&listIngredientsInfoControllers[b].text.isNotEmpty &&recpyImage!=null
 
     ){
       List<String> ingredients=[];
@@ -110,7 +122,7 @@ class AddController extends GetxController {
       postRecpy(
           categoryId: int.parse(categoryModel.id.toString()),
           name: name,
-          image: categoryImage!,
+          image: recpyImage!,
           how: how,
           additional:additional,
           ingredients:ingredients,

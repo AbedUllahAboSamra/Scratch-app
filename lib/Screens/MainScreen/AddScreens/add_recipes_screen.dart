@@ -80,31 +80,34 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       Expanded(
                         flex: 1,
                         child: InkWell(
-                          focusColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          splashColor: Colors.transparent,
-                          onTap: () {
-                            controller.picCategoryImage();
+                          onTap: (){
+                            controller.picRecpyImage();
                           },
-                          child: DottedBorder(
-                            color: Color(0xff979797),
-                            borderType: BorderType.RRect,
-                            strokeCap: StrokeCap.round,
-                            dashPattern: [8, 5],
-                            radius: Radius.circular(8.r),
-                            strokeWidth: 2,
-                            child: Stack(
-                              children: [
-                                Container(
-                                  height: 62.h,
-                                  width: 62.w,
-                                  child:
-                                      Icon(Icons.add, color: Color(0xff363837)),
+                          child: Container(
+                            width: 90.h,
+                            height: 90.h,
+                            child: DottedBorder(
+                              color: Color(0xff979797),
+                              borderType: BorderType.RRect,
+                              strokeCap: StrokeCap.round,
+                              dashPattern: [8, 5],
+                              radius: Radius.circular(8.r),
+                              strokeWidth: 2,
+                              child: controller.recpyImage==null ? Center(
+                                child: Container(
+                                  height: 120.h,
+                                  width: 120.w,
+                                  child: Icon(Icons.add_rounded ,size: 50,),
                                 ),
-                                controller.categoryImage != null
-                                    ? Image.file(controller.categoryImage!)
-                                    : Container(),
-                              ],
+                              ):Container(
+                                width: double.infinity,
+                                height: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius:BorderRadius.circular(8.r)
+                                ),
+                                child: Image.file(controller.recpyImage!,
+                                  fit: BoxFit.cover,),
+                              ),
                             ),
                           ),
                         ),
@@ -321,7 +324,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                           highlightColor: Colors.transparent,
                           splashColor: Colors.transparent,
                           onTap: () {
-
                             if (controller
                                 .listIngredientsInfoControllers[controller
                                         .listIngredientsInfoControllers.length -
@@ -599,13 +601,14 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                                   horizontal: 15.w, vertical: 14.h),
                               child: DropdownButton(
                                 underline: Container(),
-                                items: controller.categories?.map((element) =>
-                                    DropdownMenuItem(
-                                  child: AppText(
-                                      text: element.name.toString(),
-                                      color: Colors.black,
-                                      fontSize: 16.sp),
-                                )).toList(),
+                                items: controller.categories
+                                    ?.map((element) => DropdownMenuItem(
+                                          child: AppText(
+                                              text: element.name.toString(),
+                                              color: Colors.black,
+                                              fontSize: 16.sp),
+                                        ))
+                                    .toList(),
                                 onChanged: (dynamic value) {
                                   print('v');
                                 },
@@ -637,9 +640,10 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                         borderRadius: BorderRadius.circular(8.r)),
                     child: Center(
                       child: AppText(
-                          text: 'Post to Feed',
-                          color: Colors.white,
-                          fontSize: 16.sp),
+                        text: 'Post to Feed',
+                        color: Colors.white,
+                        fontSize: 16.sp,
+                      ),
                     ),
                   ),
                 ),
@@ -647,81 +651,6 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
             ),
           );
         },
-      ),
-    );
-  }
-}
-
-class DetailsForAddRecipe extends StatelessWidget {
-  final String title;
-  final String hint;
-
-  DetailsForAddRecipe({Key? key, required this.title, required this.hint})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 112.h,
-      width: 325.w,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.grey.shade100,
-                blurRadius: 20.r,
-                offset: Offset(0, 0)),
-          ],
-          borderRadius: BorderRadius.circular(8.r)),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AppText(
-                  text: title,
-                  color: Colors.black,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-                Icon(
-                  Icons.edit_outlined,
-                  color: Color(0xff363837),
-                )
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 5.h,
-          ),
-          DottedBorder(
-            color: Color(0xff979797),
-            borderType: BorderType.RRect,
-            strokeCap: StrokeCap.round,
-            dashPattern: [8, 5],
-            radius: Radius.circular(8.r),
-            strokeWidth: 2,
-            child: Container(
-              height: 30.h,
-              width: 295.w,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: Row(
-                  children: [
-                    Icon(Icons.add),
-                    SizedBox(
-                      width: 5.w,
-                    ),
-                    AppText(
-                        text: hint, color: Color(0xffA8A8A8), fontSize: 16.sp)
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

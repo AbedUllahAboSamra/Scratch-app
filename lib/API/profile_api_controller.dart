@@ -97,7 +97,7 @@ class ProfileApiController  with ApiHelpers {
     }else if( response.statusCode == 422){
       return ApiResponse(json['message'], json['status'].toString() == '201');
     } else {
-     return ApiResponse('something went error',false);
+      return ApiResponse('something went error',false);
     }
   }
 }
