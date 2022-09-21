@@ -501,12 +501,16 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
         context: context,
         builder: (context) {
           return AlertDialog(
+            title: Text('Select your addition',
+            style: Theme.of(context).textTheme.headline5,),
             content: Container(
               width: double.infinity,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  InkWell(
+                  Container(
+                    height: 50.h,
+                    child:  InkWell(
                     splashColor: Colors.transparent,
                     highlightColor:
                     Colors.transparent,
@@ -526,29 +530,32 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                         )
                       ],
                     ),
-                  ),
+                  ),),
                   SizedBox(
                     height: 10.h,
                   ),
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    highlightColor:
-                    Colors.transparent,
-                    focusColor: Colors.transparent,
-                    onTap: () {
-                      Get.toNamed(AddRecipeScreen
-                          .screenNamed);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.add),
-                        Text(
-                          'Add recipe',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyText2,
-                        )
-                      ],
+                  Container(
+                    height: 50.h,
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      highlightColor:
+                      Colors.transparent,
+                      focusColor: Colors.transparent,
+                      onTap: () {
+                        Get.toNamed(AddRecipeScreen
+                            .screenNamed);
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.add),
+                          Text(
+                            'Add recipe',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2,
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ],
