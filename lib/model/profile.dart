@@ -4,12 +4,12 @@ class Profile {
   int? id;
   String? name;
   String? email;
-  Null? emailVerifiedAt;
+  String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
-  Null? phone;
-  Null? bio;
-  Null? image;
+  String? phone;
+  String? bio;
+  String? image;
   int? followCount;
   int? userCount;
   int? likesCount;
