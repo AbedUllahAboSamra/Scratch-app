@@ -1,4 +1,4 @@
-// ignore_for_file: sized_box_for_whitespace
+// ignore_for_file: sized_box_for_whitespace, prefer_const_constructors
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
@@ -9,7 +9,10 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/MyRecipesScreen.dart';
 import 'package:scratchfood/ShardDesgin/ShardWidget.dart';
 import 'package:scratchfood/get/Add/AddController.dart';
+import 'package:scratchfood/model/category.dart';
 import 'package:scratchfood/util/context_extenssion.dart';
+
+import '../../../get/profile/profileGetxController.dart';
 
 class AddRecipeScreen extends StatefulWidget {
   static String screenNamed = '/add_recipe_screen';
@@ -22,18 +25,24 @@ class AddRecipeScreen extends StatefulWidget {
 
 class _AddRecipeScreenState extends State<AddRecipeScreen> {
   late TextEditingController nameRecipeController;
+  late TextEditingController howRecipeController;
   var controller = Get.put<AddController>(AddController());
+  var controller2 = Get.put<ProfileGetxController>(ProfileGetxController());
+
+  Category?  selectval ;
 
   @override
   void initState() {
     super.initState();
     nameRecipeController = TextEditingController();
-    controller.getCategoriesMethod();
-  }
+    howRecipeController = TextEditingController();
+ selectval = controller2.userProfile.value.category![0];
 
+   }
   @override
   void dispose() {
     nameRecipeController.dispose();
+    howRecipeController.dispose();
     super.dispose();
   }
 
@@ -60,6 +69,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 25.h, vertical: 15.h),
             child: ListView(
+              physics: BouncingScrollPhysics(),
               // crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 AppText(
@@ -80,7 +90,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                       Expanded(
                         flex: 1,
                         child: InkWell(
-                          onTap: (){
+                          onTap: () {
                             controller.picRecpyImage();
                           },
                           child: Container(
@@ -93,21 +103,28 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                               dashPattern: [8, 5],
                               radius: Radius.circular(8.r),
                               strokeWidth: 2,
-                              child: controller.recpyImage==null ? Center(
-                                child: Container(
-                                  height: 120.h,
-                                  width: 120.w,
-                                  child: Icon(Icons.add_rounded ,size: 50,),
-                                ),
-                              ):Container(
-                                width: double.infinity,
-                                height: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius:BorderRadius.circular(8.r)
-                                ),
-                                child: Image.file(controller.recpyImage!,
-                                  fit: BoxFit.cover,),
-                              ),
+                              child: controller.recpyImage == null
+                                  ? Center(
+                                      child: Container(
+                                        height: 120.h,
+                                        width: 120.w,
+                                        child: Icon(
+                                          Icons.add_rounded,
+                                          size: 50,
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8.r)),
+                                      child: Image.file(
+                                        controller.recpyImage!,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
                             ),
                           ),
                         ),
@@ -287,33 +304,54 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                                   margin: EdgeInsets.only(
                                       left: 10.w, right: 10.w, bottom: 12.h),
                                   child: Center(
-                                    child: DottedBorder(
-                                      color: Color(0xff979797),
-                                      borderType: BorderType.RRect,
-                                      strokeCap: StrokeCap.round,
-                                      dashPattern: [6, 5],
-                                      radius: Radius.circular(8.r),
-                                      strokeWidth: 1,
-                                      child: Container(
-                                        height: double.infinity,
-                                        width: double.infinity,
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsetsDirectional.only(
-                                          start: 4.w,
-                                          top: 12.h,
-                                        ),
-                                        child: TextFormField(
-                                          controller: controller
-                                                  .listIngredientsInfoControllers[
-                                              index],
-                                          decoration: InputDecoration(
-                                              hintText:
-                                                  'Ingredient ${index + 1}',
-                                              border: InputBorder.none,
-                                              focusedBorder: InputBorder.none,
-                                              hintStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .headline6),
+                                    child:  Dismissible(
+                                      confirmDismiss:
+                                          (DismissDirection direction) async {
+                                        return index == 0 ? false : true;
+                                      },
+                                      direction: DismissDirection.endToStart,
+                                      background: Container(
+                                        alignment: Alignment.centerRight,
+                                        margin: EdgeInsets.only(left: 20.w),
+                                        color: Colors.red[600],
+                                        child: Icon(Icons.delete_outline,
+                                          color: Colors.white,),
+                                      ),
+                                      onDismissed: (i) {
+                                        if (index != 0) {
+                                          controller
+                                              .removeIngredientsInfo(index);
+                                        }
+                                      },
+                                      key: GlobalKey(),
+                                      child: DottedBorder(
+                                        color: Color(0xff979797),
+                                        borderType: BorderType.RRect,
+                                        strokeCap: StrokeCap.round,
+                                        dashPattern: [6, 5],
+                                        radius: Radius.circular(8.r),
+                                        strokeWidth: 1,
+                                        child: Container(
+                                          height: double.infinity,
+                                          width: double.infinity,
+                                          alignment: Alignment.center,
+                                          margin: EdgeInsetsDirectional.only(
+                                            start: 4.w,
+                                            top: 12.h,
+                                          ),
+                                          child: TextFormField(
+                                            controller: controller
+                                                    .listIngredientsInfoControllers[
+                                                index],
+                                            decoration: InputDecoration(
+                                                hintText:
+                                                    'Ingredient ${index + 1}',
+                                                border: InputBorder.none,
+                                                focusedBorder: InputBorder.none,
+                                                hintStyle: Theme.of(context)
+                                                    .textTheme
+                                                    .headline6),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -413,6 +451,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 15.w),
                             child: TextFormField(
+                              controller: howRecipeController,
                               decoration: InputDecoration(
                                   hintText: 'Add your plain',
                                   border: InputBorder.none,
@@ -482,38 +521,59 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                                   width: double.infinity,
                                   margin: EdgeInsets.only(
                                       left: 10.w, right: 10.w, bottom: 12.h),
-                                  child: Center(
-                                    child: DottedBorder(
-                                      color: Color(0xff979797),
-                                      borderType: BorderType.RRect,
-                                      strokeCap: StrokeCap.round,
-                                      dashPattern: [6, 5],
-                                      radius: Radius.circular(8.r),
-                                      strokeWidth: 1,
-                                      child: Container(
-                                        height: double.infinity,
-                                        width: double.infinity,
-                                        alignment: Alignment.center,
-                                        margin: EdgeInsetsDirectional.only(
-                                          start: 4.w,
-                                          top: 12.h,
-                                        ),
-                                        child: TextFormField(
-                                          controller: controller
-                                                  .listAdditionalInfoControllers[
-                                              index],
-                                          decoration: InputDecoration(
-                                              hintText:
-                                                  'Additional ${index + 1}',
-                                              border: InputBorder.none,
-                                              focusedBorder: InputBorder.none,
-                                              hintStyle: Theme.of(context)
-                                                  .textTheme
-                                                  .headline6),
-                                        ),
+                                  child: Dismissible(
+                                      confirmDismiss:
+                                          (DismissDirection direction) async {
+                                        return index == 0 ? false : true;
+                                      },
+                                      direction: DismissDirection.endToStart,
+                                      background: Container(
+                                        alignment: Alignment.centerRight,
+                                        margin: EdgeInsets.only(left: 20.w),
+                                        color: Colors.red[600],
+                                        child: Icon(Icons.delete_outline,
+                                        color: Colors.white,),
                                       ),
-                                    ),
-                                  ));
+                                      onDismissed: (i) {
+                                        if (index != 0) {
+                                          controller
+                                              .removeAdditionalInfo(index);
+                                        }
+                                      },
+                                      key: GlobalKey(),
+                                      child: Center(
+                                        child: DottedBorder(
+                                          color: Color(0xff979797),
+                                          borderType: BorderType.RRect,
+                                          strokeCap: StrokeCap.round,
+                                          dashPattern: [6, 5],
+                                          radius: Radius.circular(8.r),
+                                          strokeWidth: 1,
+                                          child: Container(
+                                            height: double.infinity,
+                                            width: double.infinity,
+                                            alignment: Alignment.center,
+                                            margin: EdgeInsetsDirectional.only(
+                                              start: 4.w,
+                                              top: 12.h,
+                                            ),
+                                            child: TextFormField(
+                                              controller: controller
+                                                      .listAdditionalInfoControllers[
+                                                  index],
+                                              decoration: InputDecoration(
+                                                  hintText:
+                                                      'Additional ${index + 1}',
+                                                  border: InputBorder.none,
+                                                  focusedBorder:
+                                                      InputBorder.none,
+                                                  hintStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .headline6),
+                                            ),
+                                          ),
+                                        ),
+                                      )));
                             }),
                         InkWell(
                           focusColor: Colors.transparent,
@@ -599,19 +659,20 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 15.w, vertical: 14.h),
-                              child: DropdownButton(
+                              child:   DropdownButton(
                                 underline: Container(),
-                                items: controller.categories
-                                    ?.map((element) => DropdownMenuItem(
-                                          child: AppText(
-                                              text: element.name.toString(),
-                                              color: Colors.black,
-                                              fontSize: 16.sp),
-                                        ))
-                                    .toList(),
-                                onChanged: (dynamic value) {
-                                  print('v');
+                                value: selectval,
+                                onChanged: (value){
+                                  setState(() {
+                                    selectval = value as Category;
+                                  });
                                 },
+                                items: controller2.userProfile.value.category!.map((itemone){
+                                  return DropdownMenuItem(
+                                      value: itemone,
+                                      child: Text(itemone.name.toString())
+                                  );
+                                }).toList(),
                               ),
                             ),
                           ),
@@ -621,17 +682,34 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                             color: Color(0xff30BE76),
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
-                          ))
+                          ),
+
+
+
+                          )
                         ],
                       ),
                     ],
                   ),
                 ),
+
+                SizedBox(height: 20.h,),
                 InkWell(
                   focusColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  onTap: () {},
+                  onTap: () {
+                    print('asdasdasd');
+                    print(selectval!.id!.toString());
+                    controller.postRecipe(
+                      context: context,
+                      id: 0,
+                      how: howRecipeController.text,
+                      name: nameRecipeController.text
+
+                    );
+
+                  },
                   child: Container(
                     height: 50.h,
                     width: 325.w,
@@ -648,6 +726,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                   ),
                 ),
               ],
+
             ),
           );
         },
