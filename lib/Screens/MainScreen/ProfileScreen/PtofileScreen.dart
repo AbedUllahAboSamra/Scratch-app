@@ -24,8 +24,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> with TickerProviderStateMixin {
-  ProfileGetxController profileGetxController =
-      Get.put(ProfileGetxController());
+  ProfileGetxController profileGetxController=Get.put(ProfileGetxController());
+
   late final AnimationController _controllerLeftToRight;
 
   late final Animation<double> _animationLeftToRight;
@@ -40,7 +40,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
       duration: const Duration(milliseconds: 1300),
       vsync: this,
     )..forward();
-
+    Future.delayed(Duration(seconds: 0),() {
+      ProfileGetxController.to.getUserProfile(id:int.parse( SharedPrefController().getValueFor<String>(PrefKeys.id.name)!));
+      ProfileGetxController.to.getFollowing(id: int.parse( SharedPrefController().getValueFor<String>(PrefKeys.id.name)!));
+      ProfileGetxController.to.getFollowers(id: int.parse( SharedPrefController().getValueFor<String>(PrefKeys.id.name)!));
+    },);
     // print(SharedPrefController().getValueFor(PrefKeys.id.name));
 
 
@@ -420,7 +424,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text: '248',
+                                        text: controller.following.length.toString(),
                                         isSelected: selectedItem == 2),
                                     Spacer(),
                                     ShardTextToTabView(

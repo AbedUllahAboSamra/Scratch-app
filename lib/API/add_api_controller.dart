@@ -68,17 +68,21 @@ class AddApiController {
           await http.MultipartFile.fromPath('album', i.path);
       newList.add(path);
     }
-    print(newList);
     request.files.addAll(newList);
     var path = await http.MultipartFile.fromPath('image', image.path);
     request.files.add(path);
+    // request.fields['how']=how;
+    // request.fields['name']=name;
+    // request.fields['ingredients']=jsonEncode(ingredients);
+    // request.fields['additional']=jsonEncode(additional);
+    // request.fields['Category_id']=categoryId.toString();
 
     request.fields.addAll({
       "how": how,
       "name": name,
-      "ingredients": json.encode(ingredients),
-      "additional": json.encode(additional),
-      "Category_id": 1.toString(),
+      "ingredients": jsonEncode(ingredients),
+      "additional": jsonEncode(additional),
+      "Category_id": categoryId.toString(),
     });
 
     var res = await request.send();
