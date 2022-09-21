@@ -34,8 +34,8 @@ var notNull = false;
         elevation: 0,
         leading: IconButton(
           onPressed:(){
-            Navigator.pop(context);
-          },
+        Navigator.pop(context);
+        },
           icon:Icon( Icons.arrow_back_ios),
           color: Color(0xff363837),
         ),

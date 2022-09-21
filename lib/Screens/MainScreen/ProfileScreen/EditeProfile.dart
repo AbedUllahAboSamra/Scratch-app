@@ -31,7 +31,7 @@ class _EditeProfileState extends State<EditeProfile> {
     _biotextEditingController = TextEditingController(text: widget.bio);
     _emailtextEditingController = TextEditingController(text: widget.email);
     _phonetextEditingController = TextEditingController();
-    // TODO: implement initState
+
     super.initState();
   }
 
@@ -41,15 +41,14 @@ class _EditeProfileState extends State<EditeProfile> {
     _biotextEditingController.dispose();
     _emailtextEditingController.dispose();
     _phonetextEditingController.dispose();
-    // TODO: implement dispose
-    super.dispose();
+     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 65.h, left: 25.w, right: 25.w),
+        margin: EdgeInsets.only(top: 30.h, left: 25.w, right: 25.w),
         child: ListView(
           children: [
             InkWell(
