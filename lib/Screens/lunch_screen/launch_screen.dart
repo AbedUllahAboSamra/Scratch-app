@@ -32,6 +32,7 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   void initState() {
     super.initState();
+    print(SharedPrefController().getValueFor<String>(PrefKeys.token.name));
     String loggedIn =
     SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
         false

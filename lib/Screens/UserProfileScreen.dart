@@ -7,8 +7,15 @@ import 'MainScreen/ProfileScreen/RecipesPage.dart';
 import 'MainScreen/ProfileScreen/SavedPage.dart';
 
 class UserProfileScreen extends StatefulWidget {
+   int id ;
+   UserProfileScreen({
+     required this.id
+});
   @override
   State<UserProfileScreen> createState() => _UserProfileScreenState();
+
+
+
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen>  with TickerProviderStateMixin{
