@@ -22,7 +22,8 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> with TickerProviderStateMixin {
-
+  ProfileGetxController profileGetxController =
+      Get.put(ProfileGetxController());
   late final AnimationController _controllerLeftToRight;
 
   late final Animation<double> _animationLeftToRight;
@@ -38,6 +39,18 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
       vsync: this,
     )..forward();
 
+    // print(SharedPrefController().getValueFor(PrefKeys.id.name));
+
+    Future.delayed(Duration(seconds: 0),() {
+      profileGetxController.getUserProfile(
+          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
+
+
+    },);
+    Future.delayed(Duration(seconds: 0),() {
+      profileGetxController.getFollowing(
+          id: int.parse(SharedPrefController().getValueFor(PrefKeys.id.name)));
+    },);
     _controllerLeftToRight.forward(
       from: 0,
     );
@@ -218,7 +231,11 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => EditeProfile(name:controller.userProfile.value.name!,email:controller.userProfile.value.email!,bio:controller.userProfile.value.bio!),
+                                builder: (context) => EditeProfile(
+                                  bio: controller.user.value.bio.toString(),
+                                  name: controller.user.value.name.toString(),
+                                  email: controller.user.value.email.toString(),
+                                ),
                               ));
                             },
                             highlightColor: Colors.transparent,
@@ -279,7 +296,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text: controller.userProfile.value.category!.length.toString(),
+                                        text: '20',
                                         isSelected: selectedItem == 0),
                                     Spacer(),
                                     ShardTextToTabView(
@@ -402,7 +419,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text:  controller.following.length.toString(),
+                                        text: '248',
                                         isSelected: selectedItem == 2),
                                     Spacer(),
                                     ShardTextToTabView(

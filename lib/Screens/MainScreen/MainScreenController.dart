@@ -7,7 +7,6 @@ import 'package:scratchfood/Screens/MainScreen/SearchScreen/SearchScreen.dart';
 class MainScreenController extends StatefulWidget {
   static String mainScreenNamed = '/mainScreen';
   const MainScreenController({super.key});
-
   @override
   State<MainScreenController> createState() => _MainScreenControllerState();
 }

@@ -66,7 +66,6 @@ class RecipeModel {
     data['additional'] = this.additional;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
-    data['user_id'] = this.userId;
     data['ingredients'] = this.ingredients;
     data['album'] = this.album;
     data['likes_count'] = this.likesCount;

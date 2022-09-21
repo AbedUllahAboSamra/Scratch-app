@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:scratchfood/Screens/MainScreen/AddScreens/AddCategoryScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeCardDetails.dart';
 
 import '../../../get/main/MainGetxController.dart';
@@ -41,7 +42,9 @@ class Home extends StatelessWidget {
                       splashColor: Colors.transparent,
                       focusColor: Colors.transparent,
                       highlightColor: Colors.transparent,
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AddCategoryScreen.screenNamed);
+                      },
                       icon: Icon(
                         Icons.notifications_none,
                         size: 20.h,

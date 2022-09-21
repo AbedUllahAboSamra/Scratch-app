@@ -1,15 +1,12 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
-import 'package:http_parser/http_parser.dart';
+import 'package:get/get_connect/http/src/multipart/multipart_file.dart';
 import 'package:http/http.dart' as http;
 import 'package:scratchfood/API/api_setting.dart';
+import 'package:scratchfood/model/category_model.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
 
-import '../model/category_json.dart';
-
 class AddApiController {
-
   //--
   Future<int?> postCategory({
     required String name,
@@ -25,8 +22,7 @@ class AddApiController {
     );
     Map<String, String> headers = {
       HttpHeaders.acceptHeader: 'application/json',
-      HttpHeaders.authorizationHeader:
-          token
+      HttpHeaders.authorizationHeader: token
     };
     request.headers.addAll(headers);
     var path = await http.MultipartFile.fromPath('image', image.path);
@@ -40,9 +36,74 @@ class AddApiController {
       return 200;
     }
   }
+
   //--
 
+  Future<int?> postRecpy({
+    required int categoryId,
+    required String name,
+    required File image,
+    required String how,
+    required List<String> additional,
+    required List<String> ingredients,
+    required List<File>? album,
+  }) async {
+    String token =
+        SharedPrefController().getValueFor<String>(PrefKeys.token.name)!;
+    Uri uri = Uri.parse(ApiSettings.POST_RECPY);
 
+    var request = http.MultipartRequest(
+      'POST',
+      uri,
+    );
+    Map<String, String> headers = {
+      HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.authorizationHeader: token
+    };
+    request.headers.addAll(headers);
 
+    List<http.MultipartFile> newList = <http.MultipartFile>[];
+    for (var i in album!) {
+      http.MultipartFile path =
+          await http.MultipartFile.fromPath('album', i.path);
+      newList.add(path);
+    }
+    print(newList);
+    request.files.addAll(newList);
+    var path = await http.MultipartFile.fromPath('image', image.path);
+    request.files.add(path);
 
+    request.fields.addAll({
+      "how": how,
+      "name": name,
+      "ingredients": json.encode(ingredients),
+      "additional": json.encode(additional),
+      "Category_id": 1.toString(),
+    });
+
+    var res = await request.send();
+    String data = await res.stream.transform(utf8.decoder).first;
+    print(data);
+    print("asdsadasd" + res.statusCode.toString());
+    if (res.statusCode == 200) {
+      var json = jsonDecode(data);
+      return 200;
+    }
+//--
+  }
+
+  Future<List<CategoryModel>?> getCategories() async {
+    String token =
+        SharedPrefController().getValueFor<String>(PrefKeys.token.name)!;
+    Uri uri = Uri.parse(ApiSettings.CATEGORY_GET);
+
+    var response = await http.get(uri, headers: {
+      HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.authorizationHeader: token,
+    });
+    var json = jsonDecode(response.body) as List;
+    if (response.statusCode == 200) {
+      return json.map((e) => CategoryModel.fromJson(e)).toList();
+    }
+  }
 }
