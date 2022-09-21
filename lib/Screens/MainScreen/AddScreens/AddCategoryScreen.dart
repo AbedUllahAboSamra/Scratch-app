@@ -22,9 +22,24 @@ class AddCategoryScreen extends StatefulWidget {
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
 var controller = Get.put<AddController>(AddController());
 
-var categoryNameController = TextEditingController();
+late TextEditingController categoryNameController ;
 
 var notNull = false;
+
+@override
+  void initState() {
+    // TODO: implement initState
+  categoryNameController = TextEditingController();
+  controller.categoryImage = null ;
+
+    super.initState();
+  }
+@override
+  void dispose() {
+    // TODO: implement dispose
+  categoryNameController.dispose();
+  super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

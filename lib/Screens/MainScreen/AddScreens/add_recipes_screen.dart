@@ -36,6 +36,10 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
     super.initState();
     nameRecipeController = TextEditingController();
     howRecipeController = TextEditingController();
+    controller.recpyImage=null;
+    controller.imageFileList=[];
+     controller.listAdditionalInfoControllers.value=[TextEditingController()];
+     controller.listIngredientsInfoControllers.value=[TextEditingController()];
  selectval = controller2.userProfile.value.category![0];
 
    }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/Screens/UserProfileScreen.dart';
 import 'package:scratchfood/model/recipe.dart';
 
 class HomeCardDetails extends StatelessWidget {
@@ -9,6 +10,7 @@ class HomeCardDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: EdgeInsets.only(bottom: 20.h, left: 10.w, right: 10.w),
       width: 300.w,
@@ -26,35 +28,45 @@ class HomeCardDetails extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 13.w, vertical: 13.h),
             width: double.infinity,
             height: 70.h,
-            child: Row(
-              children: [
-                Image.asset("assets/Image/avatar.png"),
-                Container(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        recipeModel.nameUser!,
-                        style:  Theme.of(context).textTheme.headline6?.copyWith(
-                            fontSize: 12.sp,
-                          fontWeight: FontWeight.w600
+            child: InkWell(
+              focusColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              child: Row(
+                children: [
+                  Image.asset("assets/Image/avatar.png"),
+                  Container(
+                    padding:
+                    EdgeInsets.symmetric(vertical: 3.h, horizontal: 10.w),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          recipeModel.nameUser!,
+                          style:  Theme.of(context).textTheme.headline6?.copyWith(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600
+                          ),
                         ),
-                      ),
-                      Text(
-                        "2h ago",
-                        style:
-                        Theme.of(context).textTheme.headline6?.copyWith(
+                        Text(
+                          "2h ago",
+                          style:
+                          Theme.of(context).textTheme.headline6?.copyWith(
                             fontSize: 11.sp,
-                         ),
+                          ),
 
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return UserProfileScreen(id: recipeModel.userId!,);
+                 }));
+              },
+            )
           ),
           SizedBox(
             width: double.infinity,

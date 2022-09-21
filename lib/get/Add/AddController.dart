@@ -12,7 +12,6 @@ import '../../model/category_model.dart';
 class AddController extends GetxController {
   static AddController get to => Get.find();
 
-  RxList<CategoryModel>? categories;
 
   final ImagePicker _picker = ImagePicker();
   File? categoryImage;
