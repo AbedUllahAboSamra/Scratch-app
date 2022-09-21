@@ -62,7 +62,7 @@ var notNull = false;
                 ),
                 InkWell(
                   onTap: (){
-                  controller.picCategoryImage();
+                  controller.picRecpyImage();
                   },
                   child: Container(
                     width: double.infinity,

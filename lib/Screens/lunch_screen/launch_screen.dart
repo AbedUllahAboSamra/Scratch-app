@@ -8,6 +8,7 @@ import 'package:scratchfood/Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/MainScreenController.dart';
 
 import '../../get/main/MainGetxController.dart';
+import '../../get/profile/profileGetxController.dart';
 import '../../prefs/shared_pref_controller.dart';
 
 class LaunchScreen extends StatefulWidget {
@@ -21,19 +22,40 @@ class LaunchScreen extends StatefulWidget {
 class _LaunchScreenState extends State<LaunchScreen> {
 
   var controller = Get.put<MainController>(MainController());
+  var controller2 = Get.put<ProfileGetxController>(ProfileGetxController());
+
+
+
+
+
 
   @override
   void initState() {
     super.initState();
-    controller.getRecipes();
-    Future.delayed(const Duration(seconds: 3), () {
-      String loggedIn =
-          SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
-                  false
-              ? MainScreenController.mainScreenNamed
-              : LoginScreen.loginScreenNamed;
-      Navigator.pushReplacementNamed(context, loggedIn);
-    });
+    String loggedIn =
+    SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
+        false
+        ? MainScreenController.mainScreenNamed
+        : LoginScreen.loginScreenNamed;
+    if (loggedIn ==  LoginScreen.loginScreenNamed) {
+      Future.delayed(const Duration(seconds: 3), () {
+        Navigator.pushReplacementNamed(context, loggedIn);
+      });
+    } else {
+      Future.delayed(const Duration(seconds: 3), () {
+        controller.getRecipes();
+
+        ProfileGetxController.to.getUserProfile(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+
+        ProfileGetxController.to.getFollowing(
+            id: int.parse(
+                SharedPrefController().getValueFor(PrefKeys.id.name)));
+        Navigator.pushReplacementNamed(context, loggedIn);
+
+      });
+    }
   }
 
   @override

@@ -157,6 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
+
   void _performLogin() {
     if (_checkData()) {
       _login();
@@ -194,4 +195,5 @@ class _LoginScreenState extends State<LoginScreen> {
     context.ShowSnackBar(message: response.message, error: !response.success);
   }
 }
+
 
