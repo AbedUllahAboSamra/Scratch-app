@@ -8,4 +8,5 @@ class ApiSettings {
   static String FOLLOWRES = "$BASEURL/follow/Getfollower";
   static String FOLLOWING= "$BASEURL/follow/Getfollowing";
   static String CATEGORY_POST= "$BASEURL/category/PostCategory";
+  static String EDITPROFILE= "$BASEURL/user/EditProfile";
  }

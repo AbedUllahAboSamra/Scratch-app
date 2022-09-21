@@ -218,7 +218,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                           InkWell(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => EditeProfile(),
+                                builder: (context) => EditeProfile(name:controller.userProfile.value.name!,email:controller.userProfile.value.email!,bio:controller.userProfile.value.bio!),
                               ));
                             },
                             highlightColor: Colors.transparent,
@@ -279,7 +279,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text: '20',
+                                        text: controller.userProfile.value.category!.length.toString(),
                                         isSelected: selectedItem == 0),
                                     Spacer(),
                                     ShardTextToTabView(
@@ -402,7 +402,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   children: [
                                     ShardTextToTabView(
                                         context: context,
-                                        text: '248',
+                                        text:  controller.following.length.toString(),
                                         isSelected: selectedItem == 2),
                                     Spacer(),
                                     ShardTextToTabView(
