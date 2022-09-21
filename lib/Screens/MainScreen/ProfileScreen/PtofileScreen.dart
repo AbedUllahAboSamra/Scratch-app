@@ -43,22 +43,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
 
     // print(SharedPrefController().getValueFor(PrefKeys.id.name));
 
-    Future.delayed(
-      Duration(seconds: 0),
-      () {
-        profileGetxController.getUserProfile(
-            id: int.parse(
-                SharedPrefController().getValueFor(PrefKeys.id.name)));
-      },
-    );
-    Future.delayed(
-      Duration(seconds: 0),
-      () {
-        profileGetxController.getFollowing(
-            id: int.parse(
-                SharedPrefController().getValueFor(PrefKeys.id.name)));
-      },
-    );
+
     _controllerLeftToRight.forward(
       from: 0,
     );
@@ -117,7 +102,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                                   size: 20,
                                 ),
                                 SizedBox(
-                                  width: 4.w,
+                                  width: 10.w,
                                 ),
                               ],
                             ),
@@ -128,65 +113,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                             focusColor: Colors.transparent,
                             child: Icon(Icons.add),
                             onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) {
-                                    return AlertDialog(
-                                      content: Container(
-                                        width: double.infinity,
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              onTap: () {
-                                                Get.toNamed(AddCategoryScreen
-                                                    .screenNamed);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Icon(Icons.add),
-                                                  Text(
-                                                    'Add category',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText2,
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 10.h,
-                                            ),
-                                            InkWell(
-                                              splashColor: Colors.transparent,
-                                              highlightColor:
-                                                  Colors.transparent,
-                                              focusColor: Colors.transparent,
-                                              onTap: () {
-                                                Get.toNamed(AddRecipeScreen
-                                                    .screenNamed);
-                                              },
-                                              child: Row(
-                                                children: [
-                                                  Icon(Icons.add),
-                                                  Text(
-                                                    'Add recipe',
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .bodyText2,
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  });
+                              _showDialog();
                             },
                           ),
                         ],
@@ -567,5 +494,67 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
               );
       },
     );
+  }
+
+  _showDialog() async{
+    return await  showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            content: Container(
+              width: double.infinity,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor:
+                    Colors.transparent,
+                    focusColor: Colors.transparent,
+                    onTap: () {
+                      Get.toNamed(AddCategoryScreen
+                          .screenNamed);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.add),
+                        Text(
+                          'Add category',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2,
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  InkWell(
+                    splashColor: Colors.transparent,
+                    highlightColor:
+                    Colors.transparent,
+                    focusColor: Colors.transparent,
+                    onTap: () {
+                      Get.toNamed(AddRecipeScreen
+                          .screenNamed);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.add),
+                        Text(
+                          'Add recipe',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

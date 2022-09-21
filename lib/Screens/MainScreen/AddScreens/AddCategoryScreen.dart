@@ -105,7 +105,8 @@ var notNull = false;
                             AppText(
                                 text: 'Category name',
                                 color: const Color(0xffA8A8A8),
-                                fontSize: 16.sp),
+                                fontSize: 16.sp,
+                            ),
                             Container(
                               child: ShardTextFromFiled(
                                   context: context,
@@ -134,7 +135,7 @@ var notNull = false;
 
                   onTap: notNull?() {
                     if(controller.categoryImage!=null){
-                      controller.postCategory(image: controller.categoryImage!, name: categoryNameController.text, context: context);
+                      controller.postCategory(  name: categoryNameController.text, context: context);
                     }else{
                       context.ShowSnackBar(message: 'Enter Required Data', error: true);
                     }
