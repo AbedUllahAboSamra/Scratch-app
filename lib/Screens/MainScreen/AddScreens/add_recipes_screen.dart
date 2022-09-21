@@ -669,6 +669,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                                 onChanged: (value){
                                   setState(() {
                                     selectval = value as Category;
+                                    print(selectval);
                                   });
                                 },
                                 items: controller2.userProfile.value.category!.map((itemone){
@@ -707,7 +708,7 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
                     print(selectval!.id!.toString());
                     controller.postRecipe(
                       context: context,
-                      id: 0,
+                      id: selectval!.id!,
                       how: howRecipeController.text,
                       name: nameRecipeController.text
 

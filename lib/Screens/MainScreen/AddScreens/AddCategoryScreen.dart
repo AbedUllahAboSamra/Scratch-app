@@ -77,7 +77,7 @@ var notNull = false;
                 ),
                 InkWell(
                   onTap: (){
-                  controller.picRecpyImage();
+                  controller.picCategoryImage();
                   },
                   child: Container(
                     width: double.infinity,
@@ -132,7 +132,6 @@ var notNull = false;
                                       notNull =true;
                                     }else{
                                       notNull =false;
-
                                     }
                                   },
                                   controller: categoryNameController,

@@ -45,7 +45,6 @@ class _LaunchScreenState extends State<LaunchScreen> {
     } else {
       Future.delayed(const Duration(seconds: 3), () {
         controller.getRecipes();
-
         ProfileGetxController.to.getUserProfile(
             id: int.parse(
                 SharedPrefController().getValueFor(PrefKeys.id.name)));

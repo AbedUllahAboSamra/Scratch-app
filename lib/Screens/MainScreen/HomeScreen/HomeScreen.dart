@@ -72,12 +72,16 @@ class Home extends StatelessWidget {
                 itemCount: controller.recipeList.length,
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
-               itemBuilder:(context , index ){
-                  return HomeCardDetails(recipeModel: controller.recipeList[index],);
-               },
-
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      // Navi
+                      },
+                      child: HomeCardDetails(
+                    recipeModel: controller.recipeList[index],
+                  ));
+                },
               );
-
             },
           ),
         ),
