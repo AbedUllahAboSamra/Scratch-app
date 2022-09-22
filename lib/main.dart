@@ -8,6 +8,7 @@ import 'package:scratchfood/Screens/MainScreen/ProfileScreen/EditeProfile.dart';
 import 'package:scratchfood/Screens/MainScreen/ProfileScreen/followers_screen.dart';
 import 'package:scratchfood/Screens/lunch_screen/launch_screen.dart';
 import 'package:scratchfood/prefs/shared_pref_controller.dart';
+import 'Screens/DetailsScreen/DitailsScreen.dart';
 import 'Screens/LoginAndCreeatAccount/CreateAccountScreen.dart';
 import 'Screens/LoginAndCreeatAccount/LoginScreen.dart';
 import 'Screens/MainScreen/AddScreens/AddCategoryScreen.dart';
@@ -49,6 +50,9 @@ class MyApp extends StatelessWidget {
                     fontSize: 22.sp,
                     color: Colors.black,
                   ),
+                  headline5: GoogleFonts.nunito(
+                     color: Colors.black,
+                  ),
                   bodyText1:
                       GoogleFonts.nunito(fontSize: 18.sp, color: Colors.black),
                   bodyText2: GoogleFonts.nunito(
@@ -74,6 +78,7 @@ class MyApp extends StatelessWidget {
                   labelStyle:
                       GoogleFonts.neuton(fontSize: 15, color: Colors.grey[500]),
                 ),
+
                 iconTheme: IconThemeData(
                   color: Color(0xFF363837),
                   size: 24,
@@ -99,7 +104,9 @@ class MyApp extends StatelessWidget {
                       fontSize: 24.sp,
                       fontWeight: FontWeight.w500,
                       color: Colors.white,
-                    ),
+                    ), headline5: GoogleFonts.nunito(
+                    color: Colors.white,
+                  ),
                     headline3: GoogleFonts.nunito(
                       fontSize: 22.sp,
                       color: Colors.white,
@@ -141,6 +148,7 @@ class MyApp extends StatelessWidget {
                 FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
                 AddRecipeScreen.screenNamed : (context)=>AddRecipeScreen(),
                 AddCategoryScreen.screenNamed : (context)=>AddCategoryScreen(),
+                DitailsScreen.screenNamed : (context)=> DitailsScreen(),
               },
               navigatorKey: Get.key,
             );

@@ -18,12 +18,12 @@ class FollowingPage extends StatelessWidget {
                 ? Container(
                     child: ListView.separated(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (ctx, index) =>   ShardProfileUserDisgin(
                     follower: controller.following.value[index],
                         context: context),
                   separatorBuilder: (context, index) {
-                    return Divider(indent: 20,endIndent: 20,);
+                    return const Divider(indent: 20,endIndent: 20,);
                   },
                       itemCount: controller.following.value.length,
                     ),

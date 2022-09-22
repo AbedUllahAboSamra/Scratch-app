@@ -505,10 +505,13 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
         context: context,
         builder: (context) {
           return AlertDialog(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            titleTextStyle: Theme.of(context).textTheme.headline5 ,
             title: Text('Select your addition',
-            style: Theme.of(context).textTheme.headline5,),
+          ),
             content: Container(
               width: double.infinity,
+
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [

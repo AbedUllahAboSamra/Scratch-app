@@ -110,4 +110,27 @@ class AddApiController {
       return json.map((e) => CategoryModel.fromJson(e)).toList();
     }
   }
+
+  postComment({required String comment})async{
+    String token =
+    SharedPrefController().getValueFor<String>(PrefKeys.token.name)!;
+    Uri uri = Uri.parse(ApiSettings.COMMENT_POST);
+    var response = await http.post(uri,
+        headers: {
+      HttpHeaders.acceptHeader: 'application/json',
+      HttpHeaders.authorizationHeader: token,
+    },
+    body: {
+      'comment':comment
+    }
+    );
+    var json = jsonDecode(response.body) as List;
+    if (response.statusCode == 200) {
+      return json.map((e) => CategoryModel.fromJson(e)).toList();
+    }
+
+
+  }
+
+
 }

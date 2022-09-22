@@ -11,4 +11,5 @@ class ApiSettings {
   static String EDITPROFILE= "$BASEURL/user/EditProfile";
   static String POST_RECPY= "$BASEURL/recipe/PostRecipe";
   static String CATEGORY_GET= "$BASEURL/category/GetCategory";
+  static String COMMENT_POST= "$BASEURL/comment/PostComment";
  }
