@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:scratchfood/Screens/DetailsScreen/DitailsScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/AddScreens/AddCategoryScreen.dart';
 import 'package:scratchfood/Screens/MainScreen/HomeScreen/HomeCardDetails.dart';
 
@@ -68,20 +69,37 @@ class Home extends StatelessWidget {
         Expanded(
           child: GetX<MainController>(
             builder: (controller) {
-              return ListView.builder(
-                itemCount: controller.recipeList.length,
-                physics: BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      // Navi
+              return controller.recipeList.value.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: controller.recipeList.length,
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                return DitailsScreen(  recipeModel: controller.recipeList[index]);
+                              },));
+                            },
+                            child: HomeCardDetails(
+                              recipeModel: controller.recipeList[index],
+                            ));
                       },
-                      child: HomeCardDetails(
-                    recipeModel: controller.recipeList[index],
-                  ));
-                },
-              );
+                    )
+                  : Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.info,
+                          size: 55,
+                          color: Colors.grey.shade600,
+                        ),
+                        Text(
+                          'No Recipy',
+                          style: Theme.of(context).textTheme.headline1,
+                        ),
+                      ],
+                    );
             },
           ),
         ),

@@ -2,7 +2,7 @@ class Comments {
   String? nameUser;
   int? id;
   int? userId;
-  int? recipeId;
+  dynamic? recipeId;
   String? createdAt;
   String? updatedAt;
   String? comment;

@@ -7,7 +7,7 @@ class Profile {
   String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
-  String? phone;
+  int? phone;
   String? bio;
   String? image;
   int? followCount;

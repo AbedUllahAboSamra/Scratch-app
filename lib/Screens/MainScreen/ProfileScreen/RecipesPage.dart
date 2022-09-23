@@ -9,7 +9,7 @@ class RecipesPage extends StatelessWidget {
   // ProfileGetxController controller=Get.put(ProfileGetxController());
   @override
   Widget build(BuildContext context) {
-    return  GridView.builder(
+    return ProfileGetxController.to.userProfile.value.category!.isNotEmpty? GridView.builder(
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
         maxCrossAxisExtent: 200.w,
@@ -28,6 +28,19 @@ class RecipesPage extends StatelessWidget {
         );
       },
       itemCount: ProfileGetxController.to.userProfile.value.category!.length,
+    ):Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          Icons.info,
+          size: 55,
+          color: Colors.grey.shade600,
+        ),
+        Text(
+          'No Recipy',
+          style: Theme.of(context).textTheme.headline1,
+        ),
+      ],
     );
   }
 }

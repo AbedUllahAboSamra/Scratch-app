@@ -5,7 +5,7 @@ class User {
   String? emailVerifiedAt;
   String? createdAt;
   String? updatedAt;
-  String? phone;
+  dynamic? phone;
   String? bio;
   String? image;
 

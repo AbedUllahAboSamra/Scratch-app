@@ -38,7 +38,7 @@ class _UserProfileScreenState extends State<UserProfileScreen>  with TickerProvi
     )..forward();
 
     Future.delayed(Duration(seconds: 0),() {
-      ProfileGetxController.to.getUserProfile(id: widget.id);
+      ProfileGetxController.to.getUserProfile(id: widget.id,);
       ProfileGetxController.to.getFollowing(id: widget.id);
       ProfileGetxController.to.getFollowers(id: widget.id);
     },);

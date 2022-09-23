@@ -2,6 +2,11 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scratchfood/get/main/MainGetxController.dart';
+import 'package:scratchfood/model/api_response.dart';
+import 'package:scratchfood/model/comment.dart';
+import 'package:scratchfood/model/recipe.dart';
+import 'package:scratchfood/util/context_extenssion.dart';
 
 import '../../ShardDesgin/ShardWidget.dart';
 import '../MainScreen/ProfileScreen/FollowingPage.dart';
@@ -12,7 +17,9 @@ import 'HowToCookPage.dart';
 import 'IngereduentsPage.dart';
 
 class DitailsScreen extends StatefulWidget {
-  const DitailsScreen({Key? key}) : super(key: key);
+  final RecipeModel recipeModel;
+
+  DitailsScreen({Key? key, required this.recipeModel}) : super(key: key);
   static String screenNamed = '/DitailsScreen';
 
   @override
@@ -21,37 +28,14 @@ class DitailsScreen extends StatefulWidget {
 
 class _DitailsScreenState extends State<DitailsScreen>
     with TickerProviderStateMixin {
-  var images = [
-    'https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350',
-    'https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350',
-    'https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350',
-    'https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350',
-    'https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350',
-  ];
   var selectedItem = -1;
   late final Animation<double> _animationLeftToRight;
   late final AnimationController _controllerLeftToRight;
-  var commentController = TextEditingController();
-  var arrayPages = [
-    IngereduentsPage(ingereduents: const [
-      'sda',
-      'sda',
-      'sda',
-      'sda',
-    ]),
-    HowToCookPage(howTocook: 'asd'),
-    AdditionalInfoPage(
-      addition: const [
-        'sda',
-        'sda',
-        'sda',
-        'sda',
-      ],
-    )
-  ];
+  late TextEditingController commentController ;
 
   @override
   void initState() {
+    commentController = TextEditingController();
     selectedItem = 0;
     _controllerLeftToRight = AnimationController(
       duration: const Duration(milliseconds: 1300),
@@ -77,7 +61,16 @@ class _DitailsScreenState extends State<DitailsScreen>
 
   @override
   Widget build(BuildContext context) {
-    print(images.length);
+    var images = widget.recipeModel.album!;
+    var arrayPages = [
+      IngereduentsPage(
+        ingereduents: widget.recipeModel.ingredients!,
+      ),
+      HowToCookPage(howTocook: widget.recipeModel.how!),
+      AdditionalInfoPage(
+        addition: widget.recipeModel.additional!,
+      )
+    ];
     return Scaffold(
         body: NestedScrollView(
             headerSliverBuilder:
@@ -94,13 +87,15 @@ class _DitailsScreenState extends State<DitailsScreen>
                     background: Container(
                       foregroundDecoration:
                           BoxDecoration(color: Colors.black87.withOpacity(.2)),
-                      child: Image.network(
-                        "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
-                        fit: BoxFit.cover,
-                      ),
+                      child: widget.recipeModel.album!.isNotEmpty
+                          ? Image.network(
+                              widget.recipeModel.album!.first,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset('assets/Image.jpg'),
                     ),
                     title: Text(
-                      'Engine-Cooked Honey Orange Pancake',
+                      widget.recipeModel.name!,
                       style: Theme.of(context).textTheme.headline5?.copyWith(
                           color: Theme.of(context).scaffoldBackgroundColor,
                           fontSize: 19.sp,
@@ -185,17 +180,19 @@ class _DitailsScreenState extends State<DitailsScreen>
                   SizedBox(
                     height: 20.h,
                   ),
-                  images != null
+                  images.isNotEmpty
                       ? Container(
                           margin: EdgeInsets.symmetric(horizontal: 16.w),
                           child: images.length == 1
                               ? Container(
                                   height: 95.h,
                                   width: 105.w,
-                                  child: Image(
-                                    image: NetworkImage(images[0]),
-                                    fit: BoxFit.fill,
-                                  ),
+                                  child: images.isNotEmpty
+                                      ? Image.network(images[0])
+                                      : Image.asset(
+                                          'assets/Image.jpg',
+                                          fit: BoxFit.fill,
+                                        ),
                                 )
                               : images.length == 2
                                   ? Row(
@@ -242,7 +239,7 @@ class _DitailsScreenState extends State<DitailsScreen>
                                                 height: 95.h,
                                                 child: Image(
                                                   image:
-                                                      NetworkImage(images[1]),
+                                                      NetworkImage(images[0]),
                                                   fit: BoxFit.fill,
                                                 ),
                                               ),
@@ -257,7 +254,7 @@ class _DitailsScreenState extends State<DitailsScreen>
                                                     children: [
                                                       Image(
                                                         image: NetworkImage(
-                                                            images[2]),
+                                                            images[0]),
                                                         fit: BoxFit.fill,
                                                       ),
                                                       images.length > 3
@@ -529,10 +526,10 @@ class _DitailsScreenState extends State<DitailsScreen>
                               },
                               itemBuilder: (context, index) {
                                 return _commentBulder(
-                                    commentContent: 'asd  bfd as q',
-                                    commenterName: ' asd');
+                                    comment: widget.recipeModel.comments![index]
+                                );
                               },
-                              itemCount: 5,
+                              itemCount:  widget.recipeModel.comments!.length,
                             ),
                           ),
                           SizedBox(
@@ -582,8 +579,11 @@ class _DitailsScreenState extends State<DitailsScreen>
                                 child: Container(
                                   height: 36.h,
                                   width: 36.h,
-                                  child: Icon(
-                                    Icons.send_outlined,
+                                  child: IconButton(
+                                    icon: Icon(Icons.send_outlined),
+                                    onPressed: (){
+                                      performAddComment();
+                                    },
                                     color: Colors.white,
                                   ),
                                 ),
@@ -603,17 +603,17 @@ class _DitailsScreenState extends State<DitailsScreen>
   }
 
   Widget _commentBulder({
-    required String commenterName,
-    required String commentContent,
+
+    required Comments comment,
   }) {
-    return Container(
+    return  Container(
       alignment: Alignment.centerLeft,
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            commenterName,
+            comment.nameUser!,
             style: Theme.of(context)
                 .textTheme
                 .headline6
@@ -625,7 +625,7 @@ class _DitailsScreenState extends State<DitailsScreen>
           Container(
             margin: EdgeInsets.only(left: 8.w),
             child: Text(
-              commentContent,
+              comment.comment!,
               style: Theme.of(context)
                   .textTheme
                   .headline6
@@ -638,5 +638,21 @@ class _DitailsScreenState extends State<DitailsScreen>
         ],
       ),
     );
+  }
+
+  performAddComment(){
+    comment();
+  }
+
+
+   comment()async{
+     if(commentController.text.isNotEmpty){
+    ApiResponse apiResponse=await MainController.to.addComment(recipe_id: widget.recipeModel.id!.toString(), comment: commentController.text);
+    if(apiResponse.success){
+      commentController.text='';
+      MainController.to.getRecipes();
+    }
+    context.ShowSnackBar(message: apiResponse.message,error: !apiResponse.success);
+     }
   }
 }

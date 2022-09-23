@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:scratchfood/API/main_api_controller.dart';
 import 'package:scratchfood/API/profile_api_controller.dart';
@@ -26,9 +27,9 @@ class ProfileGetxController extends GetxController {
   }
   static ProfileGetxController get to => Get.find() ;
 
-  getUserProfile({required int id}) async{
+  getUserProfile({required int id,}) async{
     loading.value=true;
-    userProfile.value = (await profileApiController.getUserProfile(id: id))!;
+    userProfile.value = (await profileApiController.getUserProfile(id: id,))!;
     loading.value=false;
   }
 

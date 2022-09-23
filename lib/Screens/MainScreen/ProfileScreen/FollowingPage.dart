@@ -31,7 +31,7 @@ class FollowingPage extends StatelessWidget {
                 : Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Icon(Icons.info, size: 55, color: Colors.grey.shade500),
+                      Icon(Icons.info, size: 55, color: Colors.grey.shade600),
                       Text(
                         'No Data',
                         style: Theme.of(context).textTheme.headline2,

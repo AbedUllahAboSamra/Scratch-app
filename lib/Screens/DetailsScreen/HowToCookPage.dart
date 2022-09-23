@@ -22,7 +22,7 @@ class HowToCookPage extends StatelessWidget{
                   margin: EdgeInsets.only(
                       left: 8.w
                   ),
-                  child: Text('how to cook ', style:  Theme.of(context).textTheme.headline6?.copyWith(
+                  child: Text(howTocook, style:  Theme.of(context).textTheme.headline6?.copyWith(
                       fontWeight: FontWeight.bold
                   ),),
                 );

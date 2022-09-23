@@ -40,7 +40,7 @@ class SharedPrefController {
     _sharedPreferences.setString(
         PrefKeys.token.name, 'Bearer ${userModel.token!}');
     _sharedPreferences.setString(
-        PrefKeys.mobile.name, userModel.user!.phone ?? '');
+        PrefKeys.mobile.name, userModel.user!.phone.toString() );
   }
 
   T? getValueFor<T>(String key) {

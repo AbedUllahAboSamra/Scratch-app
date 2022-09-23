@@ -148,7 +148,6 @@ class MyApp extends StatelessWidget {
                 FollowersScreen.ScreenNamed :(context)=>FollowersScreen(),
                 AddRecipeScreen.screenNamed : (context)=>AddRecipeScreen(),
                 AddCategoryScreen.screenNamed : (context)=>AddCategoryScreen(),
-                DitailsScreen.screenNamed : (context)=> DitailsScreen(),
               },
               navigatorKey: Get.key,
             );

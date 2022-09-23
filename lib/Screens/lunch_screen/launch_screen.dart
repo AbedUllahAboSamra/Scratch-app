@@ -32,7 +32,6 @@ class _LaunchScreenState extends State<LaunchScreen> {
   @override
   void initState() {
     super.initState();
-    print(SharedPrefController().getValueFor<String>(PrefKeys.token.name));
     String loggedIn =
     SharedPrefController().getValueFor<bool>(PrefKeys.loggedIn.name) ??
         false
@@ -45,11 +44,11 @@ class _LaunchScreenState extends State<LaunchScreen> {
     } else {
       Future.delayed(const Duration(seconds: 3), () {
         controller.getRecipes();
-        ProfileGetxController.to.getUserProfile(
+        controller2.getUserProfile(
             id: int.parse(
                 SharedPrefController().getValueFor(PrefKeys.id.name)));
 
-        ProfileGetxController.to.getFollowing(
+        controller2.getFollowing(
             id: int.parse(
                 SharedPrefController().getValueFor(PrefKeys.id.name)));
         Navigator.pushReplacementNamed(context, loggedIn);

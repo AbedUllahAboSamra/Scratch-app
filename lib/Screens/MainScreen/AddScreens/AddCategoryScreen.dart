@@ -146,7 +146,6 @@ var notNull = false;
 
                 SizedBox(height: 30.h,),
                 InkWell(
-
                   onTap: notNull?() {
                     if(controller.categoryImage!=null){
                       controller.postCategory(  name: categoryNameController.text, context: context);
